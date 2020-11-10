@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "dtMwyLWXSlfTq89uzq1kgziPtZk1ukJtKErNsC1L5/TEbfg8DCBCrWCVTsl61PGFTCbpdDCvG1rShRG2NY/wtQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\birdc\\source\\repos\\TitleTownCards\\TitleTownCards.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\birdc\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.113\\stub.system.data.sqlite.core.netstandard.1.0.113.nupkg.sha512",
+    "C:\\Users\\birdc\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.5\\system.data.sqlite.core.1.0.113.5.nupkg.sha512"
+  ],
+  "logs": []
+}

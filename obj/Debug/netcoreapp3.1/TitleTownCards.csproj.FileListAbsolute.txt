@@ -1,0 +1,4 @@
+C:\Users\birdc\source\repos\TitleTownCards\obj\Debug\netcoreapp3.1\TitleTownCards.csprojAssemblyReference.cache
+C:\Users\birdc\source\repos\TitleTownCards\obj\Debug\netcoreapp3.1\TitleTownCards.AssemblyInfoInputs.cache
+C:\Users\birdc\source\repos\TitleTownCards\obj\Debug\netcoreapp3.1\TitleTownCards.AssemblyInfo.cs
+C:\Users\birdc\source\repos\TitleTownCards\obj\Debug\netcoreapp3.1\TitleTownCards.csproj.CoreCompileInputs.cache

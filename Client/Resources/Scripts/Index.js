@@ -21,7 +21,7 @@ function getInventory(){
 }
 
 function getProduct(productID){
-    const getProductApiUrl = "https://localhost:5001/API/Products";
+    const getProductApiUrl = "https://localhost:5001/API/Products" + productID;
 
 
     fetch(getProductApiUrl).then(function(response){

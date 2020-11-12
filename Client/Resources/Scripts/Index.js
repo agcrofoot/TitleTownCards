@@ -20,19 +20,18 @@ function getProducts(){
     });
 }
 
-function getProduct(productID){
-    const getProductApiUrl = "https://localhost:5001/API/Products/" + productID;
+function getProduct(ID){
+    const getProductApiUrl = "https://localhost:5001/API/Products/" + ID;
     fetch(getProductApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        console.log(json);
         var html = "<div class = \"container\">";
-        html += "<div><p><b>ID: </b>" + json.productID + "</p>";
+        html += "<div><p><b>ID: </b>" + json.productID+ "</p>";
         html += "<p><b>Name: </b>" + json.productName + "</p>";
         html += "<p><b>Price: </b>" + json.productPrice + "</p>";
         html += "</div>";
-        document.getElementById("products").innerHTML = html;
+        document.getElementById("product").innerHTML = html;
     }).catch(function(error){
         console.log(error);
     });

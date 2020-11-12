@@ -20,8 +20,28 @@ function getProducts(){
     });
 }
 
+function showSearch()
+{
+    const showProductApiUrl = "https://localhost:5001/API/Products";
+    fetch(showProductApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        console.log(json.productID);
+
+        var html = "<form onsubmit=\"return false\" method = \"GET\">" + 
+        " <input type=\"text\" name = \"searchID\" id = \"productSearch\" placeholder = \"Enter Product ID\"/>" +
+        " <input type=\"submit\" value = \"Search\" onclick = \"getProduct(" + json.productID + ")\"/></form>";
+
+        document.getElementById("search").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+    });
+   
+}
+
 function getProduct(productID){
-    const getProductApiUrl = "https://localhost:5001/API/Products" + productID;
+    const getProductApiUrl = "https://localhost:5001/API/Products/" + productID;
 
 
     fetch(getProductApiUrl).then(function(response){

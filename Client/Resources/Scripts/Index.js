@@ -1,4 +1,4 @@
-function getInventory(){
+function getProducts(){
     const getAllProductsApiUrl = "https://localhost:5001/API/Products";
     fetch(getAllProductsApiUrl).then(function(response){
         console.log(response);
@@ -63,7 +63,7 @@ function addProduct(){
     })
     .then((response)=>{
         console.log(response);
-        getProduct();
+        getProducts();
     })
 }
 

@@ -8,7 +8,7 @@
     <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
     <title>Title Town Cards</title>
 </head>
-<body>
+<body onload = "getProducts()">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -17,12 +17,16 @@
             <div class="inner text-center">
                 <h3 class="masthead-brand" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Title Town Cards</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link active" href="HomePage.html">Home</a>
+                    <a class="nav-link" href="HomePage.html">Home</a>
                     <a class="nav-link" href="Inventory.html">Inventory</a>
                     <a class="nav-link" href="#">Sign In</a>
                 </nav>
             </div>
         </header>
+        <form onsubmit="return false" method = "GET">
+            <input type="text" name = "posting" id = "post" placeholder = "Type Post"/>
+            <input type="submit" value = "Add Post" onclick = "postPost()"/>
+        </form>
         
     </div>
 

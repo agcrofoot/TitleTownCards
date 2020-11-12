@@ -30,6 +30,7 @@ function getProduct(ID){
         html += "<div><p><b>ID: </b>" + json.productID+ "</p>";
         html += "<p><b>Name: </b>" + json.productName + "</p>";
         html += "<p><b>Price: </b>" + json.productPrice + "</p>";
+        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTo()\"/>";
         html += "</div>";
         document.getElementById("product").innerHTML = html;
     }).catch(function(error){

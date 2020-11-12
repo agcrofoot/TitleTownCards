@@ -94,6 +94,7 @@ namespace API.Models
             cmd.CommandText = @"CREATE TABLE Transactions    (
                 TransactionID   INTEGER PRIMARY KEY,
                 TransactionDate TEXT,
+                TransactionCost INTEGER,
                 ManagerID       INTEGER,
                 ManagerName     TEXT,
                 EmployeeID      INTEGER,
@@ -129,8 +130,9 @@ namespace API.Models
         //Inserting data
 
             //Manager
-            cmd.CommandText = @"INSERT INTO Manager(ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
-                VALUES(@ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";
+            cmd.CommandText = @"INSERT INTO Manager(ManagerID, ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
+                VALUES(@ManagerID, @ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";
+            cmd.Parameters.AddWithValue("@ManagerID","100");
             cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
             cmd.Parameters.AddWithValue("@ManagerPhone","111-111-1111");
             cmd.Parameters.AddWithValue("@ManagerEmail","prgates@crimson.ua.edu");
@@ -138,14 +140,36 @@ namespace API.Models
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
+            cmd.CommandText = @"INSERT INTO Manager(ManagerID, ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
+                VALUES(@ManagerID, @ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";
+            cmd.Parameters.AddWithValue("@ManagerID","200");
+            cmd.Parameters.AddWithValue("@ManagerName","Bobby Smith");
+            cmd.Parameters.AddWithValue("@ManagerPhone","121-121-1221");
+            cmd.Parameters.AddWithValue("@ManagerEmail","bobsmith@crimson.ua.edu");
+            cmd.Parameters.AddWithValue("@ManagerAddress","330 Bidgood Ln. Tuscaloosa, AL 35407");
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+
             //Employee
-            cmd.CommandText = @"INSERT INTO Employee(EmployeeName, EmployeePhone, EmployeeEmail, EmployeeAddress, ManagerID)
-                VALUES(@EmployeeName, @EmployeePhone, @EmployeeEmail, @EmployeeAddress, @ManagerID)";
+            cmd.CommandText = @"INSERT INTO Employee(EmployeeID, EmployeeName, EmployeePhone, EmployeeEmail, EmployeeAddress, ManagerID)
+                VALUES(@EmployeeID, @EmployeeName, @EmployeePhone, @EmployeeEmail, @EmployeeAddress, @ManagerID)";
+            cmd.Parameters.AddWithValue("@EmployeeID", "10");
             cmd.Parameters.AddWithValue("@EmployeeName","Molly");
             cmd.Parameters.AddWithValue("@EmployeePhone","222-222-2222");
             cmd.Parameters.AddWithValue("@EmployeeEmail","molly@email.com");
             cmd.Parameters.AddWithValue("@EmployeeAddress","321 Hewson Ln. Tuscaloosa, AL 35407");
-            cmd.Parameters.AddWithValue("@ManagerID","1");
+            cmd.Parameters.AddWithValue("@ManagerID","100");
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = @"INSERT INTO Employee(EmployeeID, EmployeeName, EmployeePhone, EmployeeEmail, EmployeeAddress, ManagerID)
+                VALUES(@EmployeeID, @EmployeeName, @EmployeePhone, @EmployeeEmail, @EmployeeAddress, @ManagerID)";
+            cmd.Parameters.AddWithValue("@EmployeeID", "20");
+            cmd.Parameters.AddWithValue("@EmployeeName","Kevin");
+            cmd.Parameters.AddWithValue("@EmployeePhone","212-212-2112");
+            cmd.Parameters.AddWithValue("@EmployeeEmail","kevin@email.com");
+            cmd.Parameters.AddWithValue("@EmployeeAddress","330 Hewson Ln. Tuscaloosa, AL 35407");
+            cmd.Parameters.AddWithValue("@ManagerID","200");
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
@@ -170,60 +194,93 @@ namespace API.Models
             //Product
             cmd.CommandText = @"INSERT INTO Product(ProductName, ProductPrice, ProductType, ProductStatus, ProductDiscount, DateOrdered, DateAddedToInv, ManagerID, ManagerName, EmployeeID, EmployeeName)
                 VALUES(@ProductName, @ProductPrice, @ProductType, @ProductStatus, @ProductDiscount, @DateOrdered, @DateAddedToInv, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName)";
-            cmd.Parameters.AddWithValue("@ProductName","Babe Ruth Card");
-            cmd.Parameters.AddWithValue("@ProductPrice","100000");
+            cmd.Parameters.AddWithValue("@ProductName","2020 Albert Pujols - Los Angeles Angels: PSA 7");
+            cmd.Parameters.AddWithValue("@ProductPrice","10.00");
             cmd.Parameters.AddWithValue("@ProductType","Baseball Card");
             cmd.Parameters.AddWithValue("@ProductStatus","Sold");
             cmd.Parameters.AddWithValue("@ProductDiscount","0");
             cmd.Parameters.AddWithValue("@DateOrdered","10/11/2020");
             cmd.Parameters.AddWithValue("@DateAddedToInv","11/03/2020");
-            cmd.Parameters.AddWithValue("@ManagerID","1");
+            cmd.Parameters.AddWithValue("@ManagerID","100");
             cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
-            cmd.Parameters.AddWithValue("@EmployeeID","1");
+            cmd.Parameters.AddWithValue("@EmployeeID","10");
             cmd.Parameters.AddWithValue("@EmployeeName","Molly");
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = @"INSERT INTO Product(ProductName, ProductPrice, ProductType, ProductStatus, ProductDiscount, DateOrdered, DateAddedToInv, ManagerID, ManagerName, EmployeeID, EmployeeName)
                 VALUES(@ProductName, @ProductPrice, @ProductType, @ProductStatus, @ProductDiscount, @DateOrdered, @DateAddedToInv, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName)";
-            cmd.Parameters.AddWithValue("@ProductName","Jackie Robinson Card");
-            cmd.Parameters.AddWithValue("@ProductPrice","10000");
+            cmd.Parameters.AddWithValue("@ProductName","2020 Dylan Bundy - Los Angeles Angels: PSA 6");
+            cmd.Parameters.AddWithValue("@ProductPrice","9.50");
             cmd.Parameters.AddWithValue("@ProductType","Baseball Card");
             cmd.Parameters.AddWithValue("@ProductStatus","In Stock");
             cmd.Parameters.AddWithValue("@ProductDiscount","0");
             cmd.Parameters.AddWithValue("@DateOrdered","10/13/2020");
             cmd.Parameters.AddWithValue("@DateAddedToInv","11/04/2020");
-            cmd.Parameters.AddWithValue("@ManagerID","1");
-            cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
-            cmd.Parameters.AddWithValue("@EmployeeID","1");
+            cmd.Parameters.AddWithValue("@ManagerID","200");
+            cmd.Parameters.AddWithValue("@ManagerName","Bobby Smith");
+            cmd.Parameters.AddWithValue("@EmployeeID","20");
+            cmd.Parameters.AddWithValue("@EmployeeName","Kevin");
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = @"INSERT INTO Product(ProductName, ProductPrice, ProductType, ProductStatus, ProductDiscount, DateOrdered, DateAddedToInv, ManagerID, ManagerName, EmployeeID, EmployeeName)
+                VALUES(@ProductName, @ProductPrice, @ProductType, @ProductStatus, @ProductDiscount, @DateOrdered, @DateAddedToInv, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName)";
+            cmd.Parameters.AddWithValue("@ProductName","2020 Tommy La Stella - Los Angeles Angels: PSA 6");
+            cmd.Parameters.AddWithValue("@ProductPrice","9.50");
+            cmd.Parameters.AddWithValue("@ProductType","Baseball Card");
+            cmd.Parameters.AddWithValue("@ProductStatus","In Stock");
+            cmd.Parameters.AddWithValue("@ProductDiscount","0");
+            cmd.Parameters.AddWithValue("@DateOrdered","10/09/2020");
+            cmd.Parameters.AddWithValue("@DateAddedToInv","11/02/2020");
+            cmd.Parameters.AddWithValue("@ManagerID","200");
+            cmd.Parameters.AddWithValue("@ManagerName","Bobby Smith");
+            cmd.Parameters.AddWithValue("@EmployeeID","10");
             cmd.Parameters.AddWithValue("@EmployeeName","Molly");
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = @"INSERT INTO Product(ProductName, ProductPrice, ProductType, ProductStatus, ProductDiscount, DateOrdered, DateAddedToInv, ManagerID, ManagerName, EmployeeID, EmployeeName)
                 VALUES(@ProductName, @ProductPrice, @ProductType, @ProductStatus, @ProductDiscount, @DateOrdered, @DateAddedToInv, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName)";
-            cmd.Parameters.AddWithValue("@ProductName","Lou Gehrig Card");
-            cmd.Parameters.AddWithValue("@ProductPrice","200000");
+            cmd.Parameters.AddWithValue("@ProductName","2020 Matt Thais - Los Angeles Angels: PSA 7");
+            cmd.Parameters.AddWithValue("@ProductPrice","10.50");
             cmd.Parameters.AddWithValue("@ProductType","Baseball Card");
-            cmd.Parameters.AddWithValue("@ProductStatus","Sold");
+            cmd.Parameters.AddWithValue("@ProductStatus","In Stock");
             cmd.Parameters.AddWithValue("@ProductDiscount","0");
-            cmd.Parameters.AddWithValue("@DateOrdered","10/09/2020");
+            cmd.Parameters.AddWithValue("@DateOrdered","10/15/2020");
             cmd.Parameters.AddWithValue("@DateAddedToInv","11/02/2020");
-            cmd.Parameters.AddWithValue("@ManagerID","1");
+            cmd.Parameters.AddWithValue("@ManagerID","100");
             cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
-            cmd.Parameters.AddWithValue("@EmployeeID","1");
+            cmd.Parameters.AddWithValue("@EmployeeID","20");
+            cmd.Parameters.AddWithValue("@EmployeeName","Kevin");
+            cmd.Prepare();
+            cmd.ExecuteNonQuery();
+
+            cmd.CommandText = @"INSERT INTO Product(ProductName, ProductPrice, ProductType, ProductStatus, ProductDiscount, DateOrdered, DateAddedToInv, ManagerID, ManagerName, EmployeeID, EmployeeName)
+                VALUES(@ProductName, @ProductPrice, @ProductType, @ProductStatus, @ProductDiscount, @DateOrdered, @DateAddedToInv, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName)";
+            cmd.Parameters.AddWithValue("@ProductName","2020 Patrck Sandoval - Los Angeles Angels: PSA 6");
+            cmd.Parameters.AddWithValue("@ProductPrice","9.50");
+            cmd.Parameters.AddWithValue("@ProductType","Baseball Card");
+            cmd.Parameters.AddWithValue("@ProductStatus","In Stock");
+            cmd.Parameters.AddWithValue("@ProductDiscount","0");
+            cmd.Parameters.AddWithValue("@DateOrdered","10/06/2020");
+            cmd.Parameters.AddWithValue("@DateAddedToInv","11/02/2020");
+            cmd.Parameters.AddWithValue("@ManagerID","100");
+            cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
+            cmd.Parameters.AddWithValue("@EmployeeID","10");
             cmd.Parameters.AddWithValue("@EmployeeName","Molly");
             cmd.Prepare();
             cmd.ExecuteNonQuery();
 
             //Transactions
-            cmd.CommandText = @"INSERT INTO Transactions(TransactionDate, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
-                VALUES(@TransactionDate, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+            cmd.CommandText = @"INSERT INTO Transactions(TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
+                VALUES(@TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
             cmd.Parameters.AddWithValue("@TransactionDate","10/26/2020");
-            cmd.Parameters.AddWithValue("@ManagerID","1");
+            cmd.Parameters.AddWithValue("@TransactionCost", "10.00");
+            cmd.Parameters.AddWithValue("@ManagerID","100");
             cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
-            cmd.Parameters.AddWithValue("@EmployeeID","1");
-            cmd.Parameters.AddWithValue("@EmployeeName","Molly");
+            cmd.Parameters.AddWithValue("@EmployeeID","20");
+            cmd.Parameters.AddWithValue("@EmployeeName","Kevin");
             cmd.Parameters.AddWithValue("@MemberID","1");
             cmd.Prepare();
             cmd.ExecuteNonQuery();

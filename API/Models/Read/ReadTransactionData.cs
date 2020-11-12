@@ -21,7 +21,7 @@ namespace API.Models.Read
             List<Transaction> allTransactions = new List<Transaction>();
             while(rdr.Read())
             {
-                allTransactions.Add(new Transaction(){transactionID = rdr.GetInt32(0), transactionDate = rdr.GetString(1), managerID = rdr.GetInt32(2), managerName = rdr.GetString(3), employeeID = rdr.GetInt32(4), employeeName = rdr.GetString(5), memberID = rdr.GetInt32(6)});
+                allTransactions.Add(new Transaction(){transactionID = rdr.GetInt32(0), transactionDate = rdr.GetString(1), transactionCost = rdr.GetDouble(2), managerID = rdr.GetInt32(3), managerName = rdr.GetString(4), employeeID = rdr.GetInt32(5), employeeName = rdr.GetString(6), memberID = rdr.GetInt32(7)});
             }
             return allTransactions;
         }
@@ -38,7 +38,7 @@ namespace API.Models.Read
             using SQLiteDataReader rdr = cmd.ExecuteReader();
             
             rdr.Read();
-            return new Transaction(){transactionID = rdr.GetInt32(0), transactionDate = rdr.GetString(1), managerID = rdr.GetInt32(2), managerName = rdr.GetString(3), employeeID = rdr.GetInt32(4), employeeName = rdr.GetString(5), memberID = rdr.GetInt32(6)};
+            return new Transaction(){transactionID = rdr.GetInt32(0), transactionDate = rdr.GetString(1), transactionCost = rdr.GetDouble(2), managerID = rdr.GetInt32(3), managerName = rdr.GetString(4), employeeID = rdr.GetInt32(5), employeeName = rdr.GetString(6), memberID = rdr.GetInt32(7)};
         }
     }
 }

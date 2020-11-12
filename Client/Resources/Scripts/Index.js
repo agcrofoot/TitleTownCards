@@ -20,37 +20,18 @@ function getProducts(){
     });
 }
 
-function showSearch()
-{
-    const showProductApiUrl = "https://localhost:5001/API/Products";
-    fetch(showProductApiUrl).then(function(response){
-        console.log(response);
-        return response.json();
-    }).then(function(json){
-        console.log(json.productID);
-
-        var html = "<form onsubmit=\"return false\" method = \"GET\">" + 
-        " <input type=\"text\" name = \"searchID\" id = \"productSearch\" placeholder = \"Enter Product ID\"/>" +
-        " <input type=\"submit\" value = \"Search\" onclick = \"getProduct(" + json.productID + ")\"/></form>";
-
-        document.getElementById("search").innerHTML = html;
-    }).catch(function(error){
-        console.log(error);
-    });
-   
-}
-
 function getProduct(productID){
     const getProductApiUrl = "https://localhost:5001/API/Products/" + productID;
-
-
     fetch(getProductApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        let html = "<div class = \"container\">";
-        html += "<div><p><b>ID: </b>" + json.productID + "</p><p><b>Name: </b>" + json.productName + "</p><p><b>Price: </b>" + json.productPrice + "</p>";
-        html += "</div";
+        console.log(json);
+        var html = "<div class = \"container\">";
+        html += "<div><p><b>ID: </b>" + json.productID + "</p>";
+        html += "<p><b>Name: </b>" + json.productName + "</p>";
+        html += "<p><b>Price: </b>" + json.productPrice + "</p>";
+        html += "</div>";
         document.getElementById("products").innerHTML = html;
     }).catch(function(error){
         console.log(error);

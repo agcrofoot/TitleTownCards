@@ -30,12 +30,19 @@ function getProduct(ID){
         html += "<div><p><b>ID: </b>" + json.productID+ "</p>";
         html += "<p><b>Name: </b>" + json.productName + "</p>";
         html += "<p><b>Price: </b>" + json.productPrice + "</p>";
-        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTo()\"/>";
+        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTLI()\"/>";
         html += "</div>";
         document.getElementById("product").innerHTML = html;
     }).catch(function(error){
         console.log(error);
     });
+}
+
+function addTLI(){
+    const addTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
+    
+
+
 }
 
 function addProduct(){

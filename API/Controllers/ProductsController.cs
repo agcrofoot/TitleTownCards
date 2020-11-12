@@ -21,10 +21,10 @@ namespace API.Controllers
         // GET: api/Products
         [EnableCors("Another Policy")]
         [HttpGet]
-        public void Get()
+        public List<Product> Get()
         {
-            CreateDatabase createObject = new CreateDatabase();
-            createObject.Create();
+            IGetAllProducts readObject = new ReadProductData();
+            return readObject.GetAllProducts();
         }
 
         // GET: api/Products/5

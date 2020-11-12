@@ -25,15 +25,11 @@
             </div>
         </header>
 
-        <div id= "start">
-            <form onsubmit="return false" style="text-align:center" method = "GET">
-                <h1 class="h3 mb-3 font-weight-normal">Enter Your Member ID or Press Start to Start Checking Out</h1>
-                <input type="number" name = "memberID" id = "MemID" placeholder = "Enter Member ID"/>
-                <input type="submit" value = "Enter" onclick = "getMember(document.getElementById('ID').value)"/>
+        <div id= "search">
+            <form onsubmit="return false" method = "GET">
+                <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
+                <input type="submit" value = "Search" onclick = "getProduct(document.getElementById('ID').value)"/>
             </form>
-            <div class = "text-center">
-                <a href = "POS.html" class = "btn" style="background-color: maroon; color: #fff;" role="button">Start</a>
-            </div>
         </div>
         <div id = "product">
 

@@ -289,8 +289,8 @@ namespace API.Models
             cmd.CommandText = @"INSERT INTO TransactionLineItem(ProductID, ProductName, ProductPrice, ProductType, ProductDiscount, TransactionID)
                 VALUES(@ProductID, @ProductName, @ProductPrice, @ProductType, @ProductDiscount, @TransactionID)";
             cmd.Parameters.AddWithValue("@ProductID","1");
-            cmd.Parameters.AddWithValue("@ProductName","Babe Ruth Card");
-            cmd.Parameters.AddWithValue("@ProductPrice","100000");
+            cmd.Parameters.AddWithValue("@ProductName","2020 Albert Pujols - Los Angeles Angels: PSA 7");
+            cmd.Parameters.AddWithValue("@ProductPrice","10.00");
             cmd.Parameters.AddWithValue("@ProductType","Baseball Card");
             cmd.Parameters.AddWithValue("@ProductDiscount","0");
             cmd.Parameters.AddWithValue("@TransactionID","1");

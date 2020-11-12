@@ -27,7 +27,7 @@ namespace API.Controllers
 
         // GET: api/Employees/5
         [EnableCors("Another Policy")]
-        [HttpGet("{id}")]
+        [HttpGet("{employeeID}", Name = "Get Employee")]
         public Employee Get(int employeeID)
         {
             IGetEmployee readObject = new ReadEmployeeData();
@@ -43,15 +43,15 @@ namespace API.Controllers
 
         // PUT: api/Employees/5
         [EnableCors("Another Policy")]
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{employeeID}")]
+        public void Put(int employeeID, [FromBody] string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
         [EnableCors("Another Policy")]
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{employeeID}")]
+        public void Delete(int employeeID)
         {
         }
     }

@@ -29,7 +29,7 @@ namespace API.Controllers
 
         // GET: api/Products/5
         [EnableCors("Another Policy")]
-        [HttpGet("{id}")]
+        [HttpGet("{productID}", Name = "Get Product")]
         public Product Get(int productID)
         {
             IGetProduct readObject = new ReadProductData();
@@ -47,15 +47,15 @@ namespace API.Controllers
 
         // PUT: api/Products/5
         [EnableCors("Another Policy")]
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{productID}")]
+        public void Put(int productID, [FromBody] string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
         [EnableCors("Another Policy")]
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{productID}")]
+        public void Delete(int productID)
         {
         }
     }

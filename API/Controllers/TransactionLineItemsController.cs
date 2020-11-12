@@ -27,7 +27,7 @@ namespace API.Controllers
 
         // GET: api/TransactionLineItems/5
         [EnableCors("Another Policy")]
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "Get TLI")]
         public TransactionLineItem Get(int productID, int transactionID)
         {
             IGetTransactionLineItem readObject = new ReadTransactionLineItemData();

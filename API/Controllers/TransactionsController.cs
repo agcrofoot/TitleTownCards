@@ -27,7 +27,7 @@ namespace API.Controllers
 
         // GET: api/Transactions/5
         [EnableCors("Another Policy")]
-        [HttpGet("{id}")]
+        [HttpGet("{transactionID}", Name = "Get Transaction")]
         public Transaction Get(int transactionID)
         {
             IGetTransaction readObject = new ReadTransactionData();
@@ -43,15 +43,15 @@ namespace API.Controllers
 
         // PUT: api/Transactions/5
         [EnableCors("Another Policy")]
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{transactionID}")]
+        public void Put(int transactionID, [FromBody] string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
         [EnableCors("Another Policy")]
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{transactionID}")]
+        public void Delete(int transactionID)
         {
         }
     }

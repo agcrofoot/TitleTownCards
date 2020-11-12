@@ -21,10 +21,10 @@ namespace API.Models
 
             cmd.CommandText = @"CREATE TABLE Manager    (
                 ManagerID       INTEGER     PRIMARY KEY,
-                ManagerName     TEXT        NOT NULL,
-                ManagerPhone    TEXT        NOT NULL,
-                ManagerEmail    TEXT        NOT NULL,
-                ManagerAddress  TEXT        NOT NULL
+                ManagerName     TEXT,
+                ManagerPhone    TEXT,
+                ManagerEmail    TEXT,
+                ManagerAddress  TEXT
                 )";
             cmd.ExecuteNonQuery();
 
@@ -34,11 +34,11 @@ namespace API.Models
 
             cmd.CommandText = @"CREATE TABLE Employee    (
                 EmployeeID      INTEGER     PRIMARY KEY,
-                EmployeeName    TEXT        NOT NULL,
-                EmployeePhone   TEXT        NOT NULL,
-                EmployeeEmail   TEXT        NOT NULL,
-                EmployeeAddress TEXT        NOT NULL,
-                ManagerID       INTEGER     NOT NULL
+                EmployeeName    TEXT,
+                EmployeePhone   TEXT,
+                EmployeeEmail   TEXT,
+                EmployeeAddress TEXT,
+                ManagerID       INTEGER
                 )";
             cmd.ExecuteNonQuery();
 
@@ -48,17 +48,17 @@ namespace API.Models
 
             cmd.CommandText = @"CREATE TABLE Member    (
                 MemberID        INTEGER PRIMARY KEY,
-                MemberFName     TEXT    NOT NULL,
-                MemberLName     TEXT    NOT NULL,
-                MemberAddress1  TEXT    NOT NULL,
+                MemberFName     TEXT,
+                MemberLName     TEXT,
+                MemberAddress1  TEXT,
                 MemberAddress2  TEXT,
-                MemberCity      TEXT    NOT NULL,
-                MemberState     TEXT    NOT NULL,
-                MemberZip       INTEGER NOT NULL,
-                MemberCountry   TEXT    NOT NULL,
-                MemberEmail     TEXT    NOT NULL,
-                MemberDOB       TEXT    NOT NULL,
-                MemberPhone     TEXT    NOT NULL,
+                MemberCity      TEXT,
+                MemberState     TEXT,
+                MemberZip       INTEGER,
+                MemberCountry   TEXT,
+                MemberEmail     TEXT,
+                MemberDOB       TEXT,
+                MemberPhone     TEXT,
                 MemberCardNo    INTEGER
                 )";
             cmd.ExecuteNonQuery();
@@ -69,17 +69,17 @@ namespace API.Models
 
             cmd.CommandText = @"CREATE TABLE Product    (
                 ProductID       INTEGER PRIMARY KEY,
-                ProductName     TEXT    NOT NULL,
-                ProductPrice    INTEGER NOT NULL,
-                ProductType     TEXT    NOT NULL,
-                ProductStatus   TEXT    NOT NULL,
+                ProductName     TEXT,
+                ProductPrice    INTEGER,
+                ProductType     TEXT,
+                ProductStatus   TEXT,
                 ProductDiscount INTEGER,
-                DateOrdered     TEXT    NOT NULL,
-                DateAddedToInv  TEXT    NOT NULL,
-                ManagerID       INTEGER NOT NULL,
-                ManagerName     TEXT    NOT NULL,
-                EmployeeID      INTEGER NOT NULL,
-                EmployeeName    TEXT    NOT NULL,
+                DateOrdered     TEXT,
+                DateAddedToInv  TEXT,
+                ManagerID       INTEGER,
+                ManagerName     TEXT,
+                EmployeeID      INTEGER,
+                EmployeeName    TEXT,
                 FOREIGN KEY (ManagerID)
                     REFERENCES Manager (ManagerID),
                 FOREIGN KEY (EmployeeID)
@@ -93,11 +93,11 @@ namespace API.Models
 
             cmd.CommandText = @"CREATE TABLE Transactions    (
                 TransactionID   INTEGER PRIMARY KEY,
-                TransactionDate TEXT    NOT NULL,
-                ManagerID       INTEGER NOT NULL,
-                ManagerName     TEXT    NOT NULL,
-                EmployeeID      INTEGER NOT NULL,
-                EmployeeName    TEXT    NOT NULL,
+                TransactionDate TEXT,
+                ManagerID       INTEGER,
+                ManagerName     TEXT,
+                EmployeeID      INTEGER,
+                EmployeeName    TEXT,
                 MemberID        INTEGER,
                 FOREIGN KEY (ManagerID)
                     REFERENCES Manager (ManagerID),
@@ -114,11 +114,11 @@ namespace API.Models
 
             cmd.CommandText = @"CREATE TABLE TransactionLineItem    (
                 ProductID       INTEGER PRIMARY KEY,
-                ProductName     TEXT    NOT NULL,
-                ProductPrice    INTEGER NOT NULL,
-                ProductType     TEXT    NOT NULL,
+                ProductName     TEXT,
+                ProductPrice    INTEGER,
+                ProductType     TEXT,
                 ProductDiscount INTEGER,
-                TransactionID   INTEGER NOT NULL,
+                TransactionID   INTEGER,
                 FOREIGN KEY (ProductID)
                     REFERENCES Product (ProductID),
                 FOREIGN KEY (TransactionID)

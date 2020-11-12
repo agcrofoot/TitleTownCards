@@ -27,7 +27,7 @@ namespace API.Controllers
 
         // GET: api/Managers/5
         [EnableCors("Another Policy")]
-        [HttpGet("{id}")]
+        [HttpGet("{managerID}", Name = "Get Manager")]
         public Manager Get(int managerID)
         {
             IGetManager readObject = new ReadManagerData();
@@ -43,15 +43,15 @@ namespace API.Controllers
 
         // PUT: api/Managers/5
         [EnableCors("Another Policy")]
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{managerID}")]
+        public void Put(int managerID, [FromBody] string value)
         {
         }
 
         // DELETE: api/ApiWithActions/5
         [EnableCors("Another Policy")]
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{managerID}")]
+        public void Delete(int managerID)
         {
         }
     }

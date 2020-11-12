@@ -38,12 +38,34 @@ function getProduct(ID){
     });
 }
 
-function getMember(){
-    
+function getMember(ID){
+    const getMemberApiUrl = "https://localhost:5001/API/Members/" + ID;
+
+    fetch(getMemberApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        if(ID == json.memberID)
+        {
+            console.log("went through");
+            window.location.href = "POS.html";
+            addTransaction();
+        }
+        else
+        {
+            console.log("didn't go through");
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
 }
+
+function addTransaction(member)
 
 function addTLI(){
     const addTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
+
+
     fetch(addTLIApiUrl, {
         method: "POST",
         headers: {

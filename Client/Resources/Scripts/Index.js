@@ -38,9 +38,22 @@ function getProduct(ID){
     });
 }
 
+function getMember(){
+    
+}
+
 function addTLI(){
     const addTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
-    
+    fetch(addTLIApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+
+        })
+    })
 
 
 }

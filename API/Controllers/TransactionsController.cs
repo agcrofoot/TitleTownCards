@@ -8,6 +8,8 @@ using API.Models;
 using API.Models.Interfaces.Get;
 using API.Models.Interfaces.GetAll;
 using API.Models.Read;
+using API.Models.Interfaces.Add;
+using API.Models.Save;
 using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
@@ -37,14 +39,16 @@ namespace API.Controllers
         // POST: api/Transactions
         [EnableCors("Another Policy")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Transaction value)
         {
+            IAddTransactions insertObject = new AddTransactionData();
+            insertObject.AddTransaction(value);
         }
 
         // PUT: api/Transactions/5
         [EnableCors("Another Policy")]
         [HttpPut("{transactionID}")]
-        public void Put(int transactionID, [FromBody] string value)
+        public void Put(int transactionID, [FromBody] Transaction value)
         {
         }
 

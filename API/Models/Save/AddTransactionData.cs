@@ -19,7 +19,7 @@ namespace API.Models.Save
             cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now.ToString());
             cmd.Parameters.AddWithValue("@TransactionCost", value.transactionCost);
             cmd.Parameters.AddWithValue("@ManagerID", value.managerID);
-            cmd.Parameters.AddWithValue("@ManagerName",);
+            cmd.Parameters.AddWithValue("@ManagerName","Preston");
             cmd.Parameters.AddWithValue("@EmployeeID",value.employeeID);
             cmd.Parameters.AddWithValue("@EmployeeName","Kevin");
             cmd.Parameters.AddWithValue("@MemberID",value.memberID);

@@ -8,6 +8,8 @@ using API.Models;
 using API.Models.Interfaces.Get;
 using API.Models.Interfaces.GetAll;
 using API.Models.Read;
+using API.Models.Interfaces.Add;
+using API.Models.Save;
 using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
@@ -37,14 +39,16 @@ namespace API.Controllers
         // POST: api/TransactionLineItems
         [EnableCors("Another Policy")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] TransactionLineItem value)
         {
+            IAddTransactionLineItem insertObject = new AddTransactionLineItemData();
+            insertObject.AddTLI(value);
         }
 
         // PUT: api/TransactionLineItems/5
         [EnableCors("Another Policy")]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] TransactionLineItem value)
         {
         }
 

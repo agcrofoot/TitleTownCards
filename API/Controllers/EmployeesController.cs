@@ -8,6 +8,8 @@ using API.Models;
 using API.Models.Interfaces.Get;
 using API.Models.Interfaces.GetAll;
 using API.Models.Read;
+using API.Models.Interfaces.Add;
+using API.Models.Save;
 using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
@@ -37,14 +39,16 @@ namespace API.Controllers
         // POST: api/Employees
         [EnableCors("Another Policy")]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Employee value)
         {
+            IAddEmployee insertObject = new AddEmployeeData();
+            insertObject.AddEmployee(value);
         }
 
         // PUT: api/Employees/5
         [EnableCors("Another Policy")]
         [HttpPut("{employeeID}")]
-        public void Put(int employeeID, [FromBody] string value)
+        public void Put(int employeeID, [FromBody] Employee value)
         {
         }
 

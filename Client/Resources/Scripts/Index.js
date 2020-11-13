@@ -27,38 +27,14 @@ function getProduct(ID){
         return response.json();
     }).then(function(json){
         var html = "<div class = \"container\">";
-        html += "<div><p><b>ID: </b>" + json.productID+ "</p>";
-        html += "<p><b>Name: </b>" + json.productName + "</p>";
-        html += "<p><b>Price: </b>" + json.productPrice + "</p>";
-        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTLI(" + json.productID + json.productName + json.productPrice + ")\"/>";
+        html += "<div><p><b>ID: </b></p><p id = \"ProductID\">" + json.productID+ "</p>";
+        html += "<p><b>Name: </b></p><p id = \"ProductName\">" + json.productName + "</p>";
+        html += "<p><b>Price: </b></p><p id = \"ProductPrice\">" +  json.productPrice + "</p>";
+        html += " <var id = \"ProductType\" style = \"display: none;\">" + json.productType + "</var>";
+        html += " <var id = \"ProductDiscount\" style = \"display: none;\">" + json.productDiscount + "</var>";
+        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTLI(" + json.productID + ", " + json.productPrice + ", " + json.productDiscount + ")\"/>";
         html += "</div>";
         document.getElementById("product").innerHTML = html;
-    }).catch(function(error){
-        console.log(error);
-    });
-}
-
-function getProductType(ID){
-    const getProductApiUrl = "https://localhost:5001/API/Products/" + ID;
-    fetch(getProductApiUrl).then(function(response){
-        console.log(response);
-        return response.json();
-    }).then(function(json){
-        const Type = json.productType;
-        return Type;
-    }).catch(function(error){
-        console.log(error);
-    });
-}
-
-function getProductDiscount(ID){
-    const getProductApiUrl = "https://localhost:5001/API/Products/" + ID;
-    fetch(getProductApiUrl).then(function(response){
-        console.log(response);
-        return response.json();
-    }).then(function(json){
-        const Discount = json.productDiscount;
-        return Discount;
     }).catch(function(error){
         console.log(error);
     });
@@ -96,20 +72,21 @@ function addMemberTransaction(memberID){
             "Content-Type": 'application/json'
         },
         body: JSON.stringify({
-
+            member
         })
     })
-
 }
 
-function addTLI(productID, productName, productPrice){
-    console.log(productID);
+
+function addTLI(productID, productPrice, productDiscount){
     const addTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
-    const Name = productName;
-    const Price = productPrice;
     const ID = productID;
-    const Type = getProductType(productID);
-    const Discount = getProductDiscount(productID);
+    const Name = document.getElementById("ProductName").innerHTML;
+    const Price = productPrice;
+    const Type = document.getElementById("ProductType").innerHTML;
+    const Discount = productDiscount;
+    console.log(Type);  
+    
     fetch(addTLIApiUrl, {
         method: "POST",
         headers: {
@@ -124,9 +101,9 @@ function addTLI(productID, productName, productPrice){
             productDiscount: Discount
 
         })
+    }).then((response)=>{
+        console.log(response);
     })
-
-
 }
 
 function addProduct(){

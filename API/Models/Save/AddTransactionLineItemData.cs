@@ -18,7 +18,7 @@ namespace API.Models.Save
                 VALUES(@ProductID, @ProductName, @ProductPrice, @ProductType, @ProductDiscount, @TransactionID)";
             cmd.Parameters.AddWithValue("@ProductID",value.productID);
             cmd.Parameters.AddWithValue("@ProductName", value.productName);
-            cmd.Parameters.AddWithValue("@ProductPrice",value.productPrice);
+            cmd.Parameters.AddWithValue("@ProductPrice", value.productPrice);
             cmd.Parameters.AddWithValue("@ProductType",value.productType);
             cmd.Parameters.AddWithValue("@ProductDiscount",value.productDiscount);
             cmd.Parameters.AddWithValue("@TransactionID","1");

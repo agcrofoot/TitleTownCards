@@ -20,12 +20,13 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link" href="HomePage.html">Home</a>
                     <a class="nav-link" href="Inventory.html">Inventory</a>
-                    <a class="nav-link" href="#">Sign In</a>
+                    <a class="nav-link" href="ManagerView.html">Manager View</a>
                 </nav>
             </div>
         </header>
 
         <div id= "search">
+            <h1 class="h3 mb-3 font-weight-normal"></h1>
             <form onsubmit="return false" method = "GET">
                 <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
                 <input type="submit" value = "Search" onclick = "getProduct(document.getElementById('ID').value)"/>

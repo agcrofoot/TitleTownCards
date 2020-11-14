@@ -24,9 +24,9 @@ namespace API.Models.Save
             cmd.Parameters.AddWithValue("@DateOrdered", value.dateOrdered);
             cmd.Parameters.AddWithValue("@DateAddedToInv", DateTime.Now.ToString());
             cmd.Parameters.AddWithValue("@ManagerID", value.managerID);
-            cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
+            cmd.Parameters.AddWithValue("@ManagerName",value.managerName);
             cmd.Parameters.AddWithValue("@EmployeeID", value.employeeID);
-            cmd.Parameters.AddWithValue("@EmployeeName","Molly");
+            cmd.Parameters.AddWithValue("@EmployeeName",value.employeeName);
             cmd.Prepare();
             cmd.ExecuteNonQuery();
         }

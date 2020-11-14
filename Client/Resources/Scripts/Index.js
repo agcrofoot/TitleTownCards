@@ -40,18 +40,64 @@ function getProduct(ID){
     });
 }
 
-function getMember(ID){
-    const getMemberApiUrl = "https://localhost:5001/API/Members/" + ID;
+function getMember(memberPhone){
+    const getMemberApiUrl = "https://localhost:5001/API/Members";
 
     fetch(getMemberApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        if(ID == json.memberID)
+        json.forEach((member)=>{
+            console.log(member.memberPhone);
+            console.log(memberPhone);
+            if(memberPhone == member.memberPhone)
+            {
+                console.log("went through");
+                window.location.href = "MemberPOS.html";
+                addMemberTransaction(member.memberID);
+            }
+            else
+            {
+                console.log("didn't go through");
+            }
+        });
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+function getManager(ID){
+    const getManagerApiUrl = "https://localhost:5001/API/Managers/" + ID;
+    fetch(getManagerApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        if(ID == json.managerID)
         {
             console.log("went through");
-            window.location.href = "POS.html";
-            addMemberTransaction(memberID);
+            var html = " <var id = \"ManagerName\" style = \"display: none;\">" + json.managerName + "</var>";
+            document.getElementById("karen").innerHTML = html;
+        }
+        else
+        {
+            console.log("didn't go through");
+        }
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+function getEmployee(ID){
+    const getEmployeeApiUrl = "https://localhost:5001/API/Employees/" + ID;
+    fetch(getEmployeeApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        if(ID == json.employeeID)
+        {
+            console.log("went through");
+            var html = " <var id = \"EmployeeName\" style = \"display: none;\">" + json.employeeName + "</var>";
+            document.getElementById("emp").innerHTML = html;
         }
         else
         {
@@ -63,7 +109,7 @@ function getMember(ID){
 }
 
 function addMemberTransaction(memberID){
-    const addMTransactionApiUrl = "https://localhost:5001/API/Transaction";
+    const addMTransactionApiUrl = "https://localhost:5001/API/Transactions";
 
     fetch(addMTransactionApiUrl, {
         method: "POST",
@@ -106,14 +152,16 @@ function addTLI(productID, productPrice, productDiscount){
     })
 }
 
-function addProduct(){
+function addProduct(price, mgrID, manager, empID, employee){
     const addProductApiUrl = "https://localhost:5001/API/Products";
     const Name = document.getElementById("name").value;
-    const Price = document.getElementById("price").value;
+    const Price = price;
     const Type = document.getElementById("type").value;
     const DateOrdered = document.getElementById("ordered").value;
-    const mgrID = document.getElementById("mgrID").value;
-    const empID = document.getElementById("empID").value;
+    const managerId = mgrID;
+    const mName = manager;
+    const employeeId = empID;
+    const eName = employee;
 
     fetch(addProductApiUrl, {
         method: "POST",
@@ -126,13 +174,14 @@ function addProduct(){
             productPrice: Price,
             productType: Type,
             dateOrdered: DateOrdered,
-            managerID: mgrID,
-            employeeID: empID
+            managerID: managerId,
+            managerName: mName,
+            employeeID: employeeId,
+            employeeName: eName
         })
     })
     .then((response)=>{
         console.log(response);
-        getProducts();
     })
 }
 

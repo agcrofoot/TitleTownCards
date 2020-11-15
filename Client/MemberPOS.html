@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
     <title>Title Town Cards</title>
 </head>
-<body>
+<body onload="getTransactionID()">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -24,16 +24,24 @@
                 </nav>
             </div>
         </header>
+        
+        <h2 class="mt-4">Enter the ID of the Product</h2>
+        <div class="row mb-3">
+            <div class="col-md-8 themed-grid-col" id= "search">
+                <form onsubmit="return false" name = "AddToCart" method = "GET">
+                    <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
+                    <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + document.getElementById('tID').innerHTML +'')"/>
+                </form>
+                <div id = "product">
 
-        <div id= "search">
-            <h1 class="h3 mb-3 font-weight-normal"></h1>
-            <form onsubmit="return false" method = "GET">
-                <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
-                <input type="submit" value = "Search" onclick = "getProduct(document.getElementById('ID').value)"/>
-            </form>
-        </div>
-        <div id = "product">
+                </div>
+            </div>
+            <div class="col-6 col-md-4 themed-grid-col">
 
+            </div>
+            <div id = "tID" style = "display: none;">
+
+            </div>
         </div>
         
     </div>

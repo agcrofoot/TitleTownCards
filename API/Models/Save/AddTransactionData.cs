@@ -14,8 +14,9 @@ namespace API.Models.Save
 
             using var cmd = new SQLiteCommand(con);
 
-            cmd.CommandText = @"INSERT INTO Transactions(TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
-                VALUES(@TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+            cmd.CommandText = @"INSERT INTO Transactions(TransactionID, TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
+                VALUES(@TransactionID, @TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+            cmd.Parameters.AddWithValue("@TransactionID",value.transactionID);
             cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now.ToString());
             cmd.Parameters.AddWithValue("@TransactionCost", value.transactionCost);
             cmd.Parameters.AddWithValue("@ManagerID", value.managerID);

@@ -273,8 +273,9 @@ namespace API.Models
             cmd.ExecuteNonQuery();
 
             //Transactions
-            cmd.CommandText = @"INSERT INTO Transactions(TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
-                VALUES(@TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+            cmd.CommandText = @"INSERT INTO Transactions(TransactionID, TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
+                VALUES(@TransactionID, @TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+            cmd.Parameters.AddWithValue("@TransactionID","1");
             cmd.Parameters.AddWithValue("@TransactionDate","10/26/2020");
             cmd.Parameters.AddWithValue("@TransactionCost", "10.00");
             cmd.Parameters.AddWithValue("@ManagerID","100");

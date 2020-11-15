@@ -63,15 +63,14 @@ body {
 }
   
 .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 48px; /* Height of navbar */
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
-  
+
 .sidebar .nav-link {
     font-weight: 500;
     color: #333;
@@ -146,4 +145,14 @@ input[type=submit] {
   background-color: maroon;
   color: #ffffff;
 }
+.table-responsive {
+  white-space: nowrap;
+  overflow: auto;
+  text-overflow: ellipsis;
+  display: block;
+  width: 600px;
+}
 
+th {
+  text-align: center;
+}

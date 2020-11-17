@@ -6,7 +6,7 @@ function getProducts(){
     fetch(getAllProductsApiUrl).then(function(response){
         console.log(response);
         return response.json();
-    }).then(function(json){
+    }).then(function(json){ 
         let html = "<div class = \"table-responsive\">";
         html +=         "<table class = \"table table-striped\">";
         html +=             "<thead>" +

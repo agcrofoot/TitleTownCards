@@ -17,10 +17,9 @@ namespace API.Models.Save
             Random random = new Random();
             int randomNumber = random.Next(100, 1001);
 
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-
-            cmd.CommandText = @"INSERT INTO Manager(ManagerID, ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
-                VALUES(@ManagerID, @ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";
+            string stm = @"INSERT INTO Manager(ManagerID, ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
+            VALUES(@ManagerID, @ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@ManagerID", randomNumber);
             cmd.Parameters.AddWithValue("@ManagerName",value.managerName);
             cmd.Parameters.AddWithValue("@ManagerPhone",value.managerPhone);

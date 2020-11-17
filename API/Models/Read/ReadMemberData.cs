@@ -19,7 +19,7 @@ namespace API.Models.Read
             string stm = "SELECT * FROM Member";
             MySqlCommand cmd = new MySqlCommand(stm,con);
 
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            using MySqlDataReader rdr = cmd.ExecuteReader();
             List<Member> allMembers = new List<Member>();
             while(rdr.Read())
             {
@@ -29,15 +29,15 @@ namespace API.Models.Read
         }
         public Member GetMember(int memberID)
         {
-            string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
-            using var con = new SQLiteConnection(cs);
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
             string stm = "SELECT * FROM Member WHERE MemberID = @MemberID";
-            using var cmd = new SQLiteCommand(stm, con);
+            MySqlCommand cmd = new MySqlCommand(stm,con);
             cmd.Parameters.AddWithValue("@MemberID", memberID);
             cmd.Prepare();
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            using MySqlDataReader rdr = cmd.ExecuteReader();
             
             rdr.Read();
             return new Member(){memberID = rdr.GetInt32(0), memberFName = rdr.GetString(1), memberLName = rdr.GetString(2), memberAddress1 = rdr.GetString(3), memberAddress2 = rdr.GetString(4), memberCity = rdr.GetString(5), memberState = rdr.GetString(6), memberZip = rdr.GetInt32(7), memberCountry = rdr.GetString(8), memberEmail = rdr.GetString(9), memberDOB = rdr.GetString(10), memberPhone = rdr.GetString(11), memberCardNo = rdr.GetInt32(12)};

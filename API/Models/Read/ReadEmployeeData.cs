@@ -19,7 +19,7 @@ namespace API.Models.Read
             string stm = "SELECT * FROM Employee";
             MySqlCommand cmd = new MySqlCommand(stm,con);
 
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            using MySqlDataReader rdr = cmd.ExecuteReader();
             List<Employee> allEmployees = new List<Employee>();
             while(rdr.Read())
             {
@@ -29,15 +29,15 @@ namespace API.Models.Read
         }
         public Employee GetEmployee(int employeeID)
         {
-            string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
-            using var con = new SQLiteConnection(cs);
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
             string stm = "SELECT * FROM Employee WHERE EmployeeID = @EmployeeID";
-            using var cmd = new SQLiteCommand(stm, con);
+            MySqlCommand cmd = new MySqlCommand(stm,con);
             cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
             cmd.Prepare();
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            using MySqlDataReader rdr = cmd.ExecuteReader();
             
             rdr.Read();
             return new Employee(){employeeID = rdr.GetInt32(0), employeeName = rdr.GetString(1), employeePhone = rdr.GetString(2), employeeEmail = rdr.GetString(3), employeeAddress = rdr.GetString(4)};

@@ -14,10 +14,9 @@ namespace API.Models.Save
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-
-            cmd.CommandText = @"INSERT INTO Member(MemberFName, MemberLName, MemberAddress1, MemberAddress2, MemberCity, MemberState, MemberZip, MemberCountry, MemberEmail, MemberDOB, MemberPhone, MemberCardNo)
+            string stm = @"INSERT INTO Member(MemberFName, MemberLName, MemberAddress1, MemberAddress2, MemberCity, MemberState, MemberZip, MemberCountry, MemberEmail, MemberDOB, MemberPhone, MemberCardNo)
                 VALUES(@MemberFName, @MemberLName, @MemberAddress1, @MemberAddress2, @MemberCity, @MemberState, @MemberZip, @MemberCountry, @MemberEmail, @MemberDOB, @MemberPhone, @MemberCardNo)";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@MemberFName",value.memberFName);
             cmd.Parameters.AddWithValue("@MemberLName",value.memberLName);
             cmd.Parameters.AddWithValue("@MemberAddress1",value.memberAddress1);

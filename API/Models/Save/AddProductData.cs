@@ -10,14 +10,13 @@ namespace API.Models.Save
     {
         public void AddProduct(Product value)
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>";
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-
-            cmd.CommandText = @"INSERT INTO Product(ProductName, ProductPrice, ProductType, ProductStatus, ProductDiscount, DateOrdered, DateAddedToInv, ManagerID, ManagerName, EmployeeID, EmployeeName)
+            string stm = @"INSERT INTO Product(ProductName, ProductPrice, ProductType, ProductStatus, ProductDiscount, DateOrdered, DateAddedToInv, ManagerID, ManagerName, EmployeeID, EmployeeName)
                 VALUES(@ProductName, @ProductPrice, @ProductType, @ProductStatus, @ProductDiscount, @DateOrdered, @DateAddedToInv, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName)";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@ProductName", value.productName);
             cmd.Parameters.AddWithValue("@ProductPrice", value.productPrice);
             cmd.Parameters.AddWithValue("@ProductType", value.productType);
@@ -27,7 +26,7 @@ namespace API.Models.Save
             cmd.Parameters.AddWithValue("@DateAddedToInv", DateTime.Now.ToString());
             cmd.Parameters.AddWithValue("@ManagerID", value.managerID);
             cmd.Parameters.AddWithValue("@ManagerName",value.managerName);
-            cmd.Parameters.AddWithValue("@EmployeeID", value.employeeID);
+            cmd.Parameters.AddWithValue("@EmployeeID", value.employeeID); 
             cmd.Parameters.AddWithValue("@EmployeeName",value.employeeName);
             cmd.Prepare();
             cmd.ExecuteNonQuery();

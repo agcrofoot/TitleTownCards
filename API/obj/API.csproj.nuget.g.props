@@ -16,6 +16,8 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Pkgchocolatey Condition=" '$(Pkgchocolatey)' == '' ">C:\Users\birdc\.nuget\packages\chocolatey\0.9.8.3</Pkgchocolatey>
+    <Pkgmysql Condition=" '$(Pkgmysql)' == '' ">C:\Users\birdc\.nuget\packages\mysql\5.5.14.1</Pkgmysql>
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\birdc\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.4</PkgMicrosoft_CodeAnalysis_Analyzers>
   </PropertyGroup>
 </Project>

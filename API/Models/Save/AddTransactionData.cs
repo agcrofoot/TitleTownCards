@@ -14,10 +14,9 @@ namespace API.Models.Save
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-
-            cmd.CommandText = @"INSERT INTO Transactions(TransactionID, TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
-                VALUES(@TransactionID, @TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+            string stm = @"INSERT INTO Transactions(TransactionID, TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
+            VALUES(@TransactionID, @TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@TransactionID",value.transactionID);
             cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now.ToString());
             cmd.Parameters.AddWithValue("@TransactionCost", value.transactionCost);

@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="mysql" Version="5.5.14.1" />
+    <PackageReference Include="mysql.data" Version="8.0.22" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.5" />
   </ItemGroup>
 

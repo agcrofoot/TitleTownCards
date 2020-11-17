@@ -16,6 +16,9 @@
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {}
         }
       },
+      "chocolatey/0.9.8.3": {
+        "type": "package"
+      },
       "Google.Protobuf/3.11.4": {
         "type": "package",
         "dependencies": {
@@ -137,6 +140,12 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "mysql/5.5.14.1": {
+        "type": "package",
+        "dependencies": {
+          "chocolatey": "0.9.8.3"
         }
       },
       "MySql.Data/8.0.22": {
@@ -1620,6 +1629,27 @@
         "lib/xamarinios/BouncyCastle.Crypto.xml"
       ]
     },
+    "chocolatey/0.9.8.3": {
+      "sha512": "Vnh4z2rilpXn9mUm9tFXj1Sxt+HSCemrm/znxDL0HFO50HvtJuRRQ0SQnLzt/Po3UjmJvnfQk5z6bJY/2doJrQ==",
+      "type": "package",
+      "path": "chocolatey/0.9.8.3",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "chocolatey.0.9.8.3.nupkg.sha512",
+        "chocolatey.nuspec",
+        "chocolateyicon.gif",
+        "tools/chocolateyInstall.ps1",
+        "tools/chocolateyInstall/LICENSE.txt",
+        "tools/chocolateyInstall/NuGet.exe",
+        "tools/chocolateyInstall/chocolatey.cmd",
+        "tools/chocolateyInstall/chocolatey.ps1",
+        "tools/chocolateyInstall/helpers/chocolateyInstaller.psm1",
+        "tools/chocolateysetup.psm1",
+        "tools/init.ps1"
+      ]
+    },
     "Google.Protobuf/3.11.4": {
       "sha512": "dajCxjDCiPyZuqwZCkFJTwhn/0TJ5VesIs4fXvs56ez1VUi68JjhYMMsPjnJ9gcPqJwTMtXMU1WqUdXYiG1x4w==",
       "type": "package",
@@ -1853,6 +1883,22 @@
         "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "mysql/5.5.14.1": {
+      "sha512": "x5XrAlCImJ7KmgzSsbgiUIqq70N08riTAARfECjO4TdzBy5gwS1dGkki0oFfHAPvmYi8dMX/lhzsEvakXEadOA==",
+      "type": "package",
+      "path": "mysql/5.5.14.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/mysql.ReadMe.txt",
+        "mysql.5.5.14.1.nupkg.sha512",
+        "mysql.nuspec",
+        "mysqllogo.png",
+        "tools/chocolateyInstall.ps1",
+        "tools/install.ps1"
       ]
     },
     "MySql.Data/8.0.22": {
@@ -5661,30 +5707,26 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "MySql.Data >= *",
-      "System.Data.SQLite.Core >= 1.0.113.5"
+      "MySql.Data >= 8.0.22",
+      "System.Data.SQLite.Core >= 1.0.113.5",
+      "mySQL >= 5.5.14.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hepet\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\birdc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\TitleTownCards.csproj",
+      "projectUniqueName": "C:\\xampp\\htdocs\\TitleTownCards\\TitleTownCards.csproj",
       "projectName": "TitleTownCards",
-      "projectPath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\TitleTownCards.csproj",
-      "packagesPath": "C:\\Users\\hepet\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\obj\\",
+      "projectPath": "C:\\xampp\\htdocs\\TitleTownCards\\TitleTownCards.csproj",
+      "packagesPath": "C:\\Users\\birdc\\.nuget\\packages\\",
+      "outputPath": "C:\\xampp\\htdocs\\TitleTownCards\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\hepet\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\birdc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -5709,11 +5751,15 @@
         "dependencies": {
           "MySql.Data": {
             "target": "Package",
-            "version": "[*, )"
+            "version": "[8.0.22, )"
           },
           "System.Data.SQLite.Core": {
             "target": "Package",
             "version": "[1.0.113.5, )"
+          },
+          "mySQL": {
+            "target": "Package",
+            "version": "[5.5.14.1, )"
           }
         },
         "imports": [

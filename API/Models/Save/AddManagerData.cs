@@ -1,5 +1,7 @@
 using System;
-using System.Data.SQLite;
+using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 using API.Models.Interfaces.Add;
 
 namespace API.Models.Save
@@ -8,14 +10,14 @@ namespace API.Models.Save
     {
         public void AddManager(Manager value)
         {
-            string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
-            using var con = new SQLiteConnection(cs);
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
             Random random = new Random();
             int randomNumber = random.Next(100, 1001);
 
-            using var cmd = new SQLiteCommand(con);
+            MySqlCommand cmd = new MySqlCommand(stm,con);
 
             cmd.CommandText = @"INSERT INTO Manager(ManagerID, ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
                 VALUES(@ManagerID, @ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";

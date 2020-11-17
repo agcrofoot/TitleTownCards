@@ -13,7 +13,7 @@ namespace API.Models
 
             using var cmd = new SQLiteCommand(con);
         
-        //Dropping and Creating the tables
+        //Dropping and Creating the tables 
 
             //Manager Table
             cmd.CommandText = "DROP TABLE IF EXISTS Manager";
@@ -38,7 +38,9 @@ namespace API.Models
                 EmployeePhone   TEXT,
                 EmployeeEmail   TEXT,
                 EmployeeAddress TEXT,
-                ManagerID       INTEGER
+                ManagerID       INTEGER,
+                FOREIGN KEY (ManagerID)
+                    REFERENCES Manager (ManagerID),
                 )";
             cmd.ExecuteNonQuery();
 

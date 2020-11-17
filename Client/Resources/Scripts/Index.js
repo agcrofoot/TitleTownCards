@@ -27,9 +27,9 @@ function getProduct(ID){
         return response.json();
     }).then(function(json){
         var html = "<div class = \"container\">";
-        html += "<div><p><b>ID: </b></p><p id = \"ProductID\">" + json.productID+ "</p>";
+        html += "<div><p><b>ID: </b></p><p>" + json.productID+ "</p>";
         html += "<p><b>Name: </b></p><p id = \"ProductName\">" + json.productName + "</p>";
-        html += "<p><b>Price: </b></p><p id = \"ProductPrice\">" +  json.productPrice + "</p>";
+        html += "<p><b>Price: </b></p><p>" +  json.productPrice + "</p>";
         html += " <var id = \"ProductType\" style = \"display: none;\">" + json.productType + "</var>";
         html += " <var id = \"ProductDiscount\" style = \"display: none;\">" + json.productDiscount + "</var>";
         html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTLI(" + json.productID + ", " + json.productPrice + ", " + json.productDiscount + ")\"/>";

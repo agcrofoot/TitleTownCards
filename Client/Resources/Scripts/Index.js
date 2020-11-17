@@ -215,17 +215,18 @@ function getTLI(tID){
         console.log(response);
         return response.json();
     }).then(function(json){
-        var html =  "<div style = \"width: 430px;\">";
-        html +=         "<table class = \"table\">";
+        var html =  "<ul class=\"list-group mb-3\">";
         json.forEach((lineItem) => {
             console.log(tID);
             console.log(lineItem.transactionID);
             if(tID == lineItem.transactionID)
             {
-                html +=     "<tbody>" +
-                                "<tr>"+
-                                    "<td>" + lineItem.productName + " $" + lineItem.productPrice + "</td>" +
-                                "</tr>"
+                html +=     "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
+                                "<div>" +
+                                    "<h6 class=\"my-0\">" + lineItem.productName + "</h6>" +
+                                " </div>" +
+                                " <span>" + lineItem.productPrice + "</span>" + 
+                            " </li>"
             }
         })
         html +=             "</tbody>" +

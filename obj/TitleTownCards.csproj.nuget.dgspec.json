@@ -42,6 +42,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[*, )"
+            },
             "System.Data.SQLite.Core": {
               "target": "Package",
               "version": "[1.0.113.5, )"

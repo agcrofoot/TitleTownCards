@@ -31,7 +31,7 @@ namespace API.Models.Read
             using var con = new SQLiteConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM Transactions WHERE TransactionID = @TransactiontID";
+            string stm = "SELECT * FROM Transactions WHERE TransactionID = @TransactionID";
             using var cmd = new SQLiteCommand(stm, con);
             cmd.Parameters.AddWithValue("@TransactionID", transactionID);
             cmd.Prepare();

@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
     <title>Title Town Cards</title>
 </head>
-<body>
+<body onload="getTransactionID()">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -24,21 +24,31 @@
                 </nav>
             </div>
         </header>
+        
+        <h2 class="mt-4">Enter the ID of the Product</h2>
+        <div class = "container">
+            <div class="row card">
+                <div class="column" id= "search">
+                    <form onsubmit="return false" name = "AddToCart" method = "GET">
+                        <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
+                        <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + document.getElementById('tID').innerHTML +'')"/>
+                    </form>
+                    <div class = "column" id = "product">
 
-        <div id= "start">
-            <form onsubmit="return false" style="text-align:center" method = "GET">
-                <h1 class="h3 mb-3 font-weight-normal">Enter Your Phone Number or Press Start to Start Checking Out</h1>
-                <input type="tel" name = "memberPhone" id = "MemPhone" placeholder = "Enter Phone"/>
-                <input type="submit" value = "Enter" onclick = "getMember(document.getElementById('MemPhone').value)"/>
-            </form>
-            <div class = "text-center">
-                <a href = "CustomerPOS.html" class = "btn" style="background-color: maroon; color: #fff;" role="button">Start</a>
+                    </div> 
+                </div>
+                <div class = "card">
+                    <div class = "card-header">Your Cart</div>
+                    <div class = "column card-body" id= "cart">
+                    
+                    </div>
+                    
+                </div>
+            </div>
+            <div id = "tID" style = "display: none;">
+
             </div>
         </div>
-        <div id = "product">
-
-        </div>
-        
     </div>
 
     <!-- Latest compiled and minified JavaScript -->

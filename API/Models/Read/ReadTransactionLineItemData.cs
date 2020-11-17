@@ -25,16 +25,15 @@ namespace API.Models.Read
             }
             return allTransactionLineItems;
         }
-        public TransactionLineItem GetTransactionLineItem(int productID, int transactionID)
+        public TransactionLineItem GetTransactionLineItem(int productID)
         {
             string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
             using var con = new SQLiteConnection(cs);
             con.Open();
 
-            string stm = "SELECT * FROM TransactionLineItem WHERE ProductID = @ProductID AND TransactionID = @TransactiontID";
+            string stm = "SELECT * FROM TransactionLineItem WHERE ProductID = @ProductID";
             using var cmd = new SQLiteCommand(stm, con);
             cmd.Parameters.AddWithValue("@ProductID", productID);
-            cmd.Parameters.AddWithValue("@TransactionID", transactionID);
             cmd.Prepare();
             using SQLiteDataReader rdr = cmd.ExecuteReader();
             

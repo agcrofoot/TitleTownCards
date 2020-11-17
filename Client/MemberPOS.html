@@ -26,24 +26,29 @@
         </header>
         
         <h2 class="mt-4">Enter the ID of the Product</h2>
-        <div class="row mb-3">
-            <div class="col-md-8 themed-grid-col" id= "search">
-                <form onsubmit="return false" name = "AddToCart" method = "GET">
-                    <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
-                    <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + document.getElementById('tID').innerHTML +'')"/>
-                </form>
-                <div id = "product">
+        <div class = "container">
+            <div class="row card">
+                <div class="column" id= "search">
+                    <form onsubmit="return false" name = "AddToCart" method = "GET">
+                        <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
+                        <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + document.getElementById('tID').innerHTML +'')"/>
+                    </form>
+                    <div class = "column" id = "product">
 
+                    </div> 
                 </div>
-            </div>
-            <div class="col-6 col-md-4 themed-grid-col">
-
+                <div class = "card">
+                    <div class = "card-header">Your Cart</div>
+                    <div class = "column card-body" id= "cart">
+                    
+                    </div>
+                    
+                </div>
             </div>
             <div id = "tID" style = "display: none;">
 
             </div>
         </div>
-        
     </div>
 
     <!-- Latest compiled and minified JavaScript -->

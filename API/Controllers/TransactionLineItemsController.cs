@@ -29,11 +29,11 @@ namespace API.Controllers
 
         // GET: api/TransactionLineItems/5
         [EnableCors("Another Policy")]
-        [HttpGet("{id}", Name = "Get TLI")]
-        public TransactionLineItem Get(int productID, int transactionID)
+        [HttpGet("{productID}", Name = "Get TLI")]
+        public TransactionLineItem Get(int productID)
         {
             IGetTransactionLineItem readObject = new ReadTransactionLineItemData();
-            return readObject.GetTransactionLineItem(productID, transactionID);
+            return readObject.GetTransactionLineItem(productID);
         }
 
         // POST: api/TransactionLineItems
@@ -54,8 +54,8 @@ namespace API.Controllers
 
         // DELETE: api/ApiWithActions/5
         [EnableCors("Another Policy")]
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{productID}")]
+        public void Delete(int productID)
         {
         }
     }

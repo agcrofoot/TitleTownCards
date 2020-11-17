@@ -1,4 +1,6 @@
-//Retirieves all products and their information
+//GETs
+
+//Retrieves all products and their information
 function getProducts(){
     const getAllProductsApiUrl = "https://localhost:5001/API/Products";
     fetch(getAllProductsApiUrl).then(function(response){
@@ -45,7 +47,7 @@ function getProducts(){
     });
 }
 
-//Retirieves all transactions and their information
+//Retrieves all transactions and their information
 function getTransactions(){
     const getAllransactionsApiUrl = "https://localhost:5001/API/Transactions";
     fetch(getAllransactionsApiUrl).then(function(response){
@@ -88,7 +90,7 @@ function getTransactions(){
     });
 }
 
-//Retirieves a single product and its information
+//Retrieves a single product and its information
 function getProduct(ID, tID){
     const getProductApiUrl = "https://localhost:5001/API/Products/" + ID;
     fetch(getProductApiUrl).then(function(response){
@@ -107,6 +109,8 @@ function getProduct(ID, tID){
         document.getElementById("product").innerHTML = html;
     }).catch(function(error){
         console.log(error);
+        var html = "<p>\"That item could not be found in our system. Please enter a valid ID.\"</p>";
+        document.getElementById("product").innerHTML = html;
     });
 }
 
@@ -181,15 +185,72 @@ function getEmployee(ID){
     });
 }
 
+//Generates a Transaction Number
+function getTransactionID(){
+    const transactionApiUrl = "https://localhost:5001/API/Transactions";
+    var TransactionID = 1;
+    fetch(transactionApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        json.forEach((transaction)=>{
+            console.log(transaction.transactionID);
+            console.log(TransactionID);
+            while(TransactionID == transaction.transactionID)
+            {
+                TransactionID++;
+                console.log(TransactionID);
+            }
+            document.getElementById('tID').innerHTML = TransactionID;
+        });
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Shows transaction line items in the person's cart
+function getTLI(tID){
+    const getTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
+    fetch(getTLIApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        var html =  "<div style = \"width: 430px;\">";
+        html +=         "<table class = \"table\">";
+        json.forEach((lineItem) => {
+            console.log(tID);
+            console.log(lineItem.transactionID);
+            if(tID == lineItem.transactionID)
+            {
+                html +=     "<tbody>" +
+                                "<tr>"+
+                                    "<td>" + lineItem.productName + " $" + lineItem.productPrice + "</td>" +
+                                "</tr>"
+            }
+        })
+        html +=             "</tbody>" +
+                        "</table>" +
+                    "</div>";
+        document.getElementById("cart").innerHTML = html;     
+    }).catch(function(error){
+        console.log(error);
+        var html = "<p>\"That item could not be found in our system. Please enter a valid ID.\"</p>";
+        document.getElementById("product").innerHTML = html;
+    });
+
+}
+
+//POSTs
+
 //Adds to the Transaction Line Item Table
 function addTLI(productID, productPrice, productDiscount, tID){
     const addTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
+    const TID = tID;    
     const ID = productID;
     const Name = document.getElementById("ProductName").innerHTML;
     const Price = productPrice;
     const Type = document.getElementById("ProductType").innerHTML;
     const Discount = productDiscount;
-    const TID = tID;
     console.log(TID);  
     
     fetch(addTLIApiUrl, {
@@ -199,17 +260,17 @@ function addTLI(productID, productPrice, productDiscount, tID){
             "Content-Type": 'application/json'
         },
         body: JSON.stringify({
+            transactionID: TID,
             productID: ID,
             productName: Name,
             productPrice: Price,
             productType: Type,
-            productDiscount: Discount,
-            transactionID: TID
-
+            productDiscount: Discount
         })
     }).then((response)=>{
         console.log(response);
         document.forms['AddToCart'].reset();
+        getTLI(tID);
     })
 }
 //Starts a blank transaction
@@ -263,27 +324,4 @@ function addProduct(price, mgrID, manager, empID, employee){
         console.log(response);
         document.forms['AddProducts'].reset();
     })
-}
-
-//Generates a Transaction Number
-function getTransactionID(){
-    const transactionApiUrl = "https://localhost:5001/API/Transactions";
-    var TransactionID = 1;
-    fetch(transactionApiUrl).then(function(response){
-        console.log(response);
-        return response.json();
-    }).then(function(json){
-        json.forEach((transaction)=>{
-            console.log(transaction.transactionID);
-            console.log(TransactionID);
-            while(TransactionID == transaction.transactionID)
-            {
-                TransactionID++;
-                console.log(TransactionID);
-            }
-            document.getElementById('tID').innerHTML = TransactionID;
-        });
-    }).catch(function(error){
-        console.log(error);
-    });
 }

@@ -33,7 +33,25 @@ PRIMARY KEY (`EmployeeID`)) ENGINE = InnoDB;";
 $query = mysqli_query($connection, $query);
 checkQuery($query);
 
+//PRODUCT TABLE
+echo "Product:<br/>";
+$query = "DROP TABLE IF EXISTS Product";
+$query = mysqli_query($connection, $query);
+checkQuery($query);
 
+$query = "CREATE TABLE `ttowncards`.`Product` 
+( `ProductID` INT NOT NULL AUTO_INCREMENT , 
+`ProductName` TEXT NOT NULL , `ProductPrice` 
+INT NOT NULL , `ProductStatus` TEXT NOT NULL , 
+`ProductDiscount` INT , `DateOrdered` 
+TEXT NOT NULL , `DateAddedToInv` TEXT NOT NULL ,
+`ManagerID` INT NOT NULL , `ManagerName` 
+TEXT NOT NULL , `EmployeeID` INT NOT NULL ,
+`EmployeeName` TEXT NOT NULL , PRIMARY KEY 
+(`ProductID`) , FOREIGN KEY (`ManagerID`) , FOREIGN KEY (`EmployeeID`)) ENGINE = InnoDB;";
+$query = mysqli_query($connection, $query);
+checkQuery($query);
+ 
 function checkQuery($query)
 {
     if($query)

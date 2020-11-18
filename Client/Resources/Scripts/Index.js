@@ -165,7 +165,7 @@ function getManager(ID){
 
 //Retrieves an individual Employee Name from an ID
 function getEmployee(ID){
-    const getEmployeeApiUrl = "https://localhost:5001/API/Employees/" + ID;
+    const getEmployeeApiUrl = "https://localhost/TitleTownCards/Client/Employee/" + ID;
     fetch(getEmployeeApiUrl).then(function(response){
         console.log(response);
         return response.json();

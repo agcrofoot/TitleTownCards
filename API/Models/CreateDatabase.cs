@@ -9,7 +9,7 @@ namespace API.Models
     {
         public void Create()
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;port=<3306>;password=<>;";
             MySqlConnection con = new MySqlConnection(cs);
             con.Open();
         
@@ -41,7 +41,7 @@ namespace API.Models
                 EmployeeAddress TEXT,
                 ManagerID       INTEGER,
                 FOREIGN KEY (ManagerID)
-                    REFERENCES Manager (ManagerID),
+                    REFERENCES Manager (ManagerID)
                 )";
             cmd.ExecuteNonQuery();
 

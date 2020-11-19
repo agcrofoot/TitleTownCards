@@ -1,7 +1,7 @@
-<?php include "db.php"; ?>
+<?php include_once "HomePage.html"; ?>
 
 <!-- THIS IS A DOC TO TEST DATABASE CONNECTION (with PHPmyadmin) -->
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,14 +12,11 @@
 </head>
 
 <body>
+
     
-    <?php
-
-       
-
-    ?>
+    
 
 
-</body>
+</body> 
 
-</html>
+</html>-->

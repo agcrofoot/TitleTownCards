@@ -1,5 +1,7 @@
 using System;
-using System.Data.SQLite;
+using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace API.Models
 {
@@ -7,16 +9,15 @@ namespace API.Models
     {
         public void Create()
         {
-            string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
-            using var con = new SQLiteConnection(cs);
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;port=<3306>;password=<>;";
+            MySqlConnection con = new MySqlConnection(cs);
             con.Open();
-
-            using var cmd = new SQLiteCommand(con);
         
-        //Dropping and Creating the tables
+        //Dropping and Creating the tables 
 
             //Manager Table
-            cmd.CommandText = "DROP TABLE IF EXISTS Manager";
+            string stm = "DROP TABLE IF EXISTS Manager";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
             cmd.ExecuteNonQuery();
 
             cmd.CommandText = @"CREATE TABLE Manager    (
@@ -38,7 +39,9 @@ namespace API.Models
                 EmployeePhone   TEXT,
                 EmployeeEmail   TEXT,
                 EmployeeAddress TEXT,
-                ManagerID       INTEGER
+                ManagerID       INTEGER,
+                FOREIGN KEY (ManagerID)
+                    REFERENCES Manager (ManagerID)
                 )";
             cmd.ExecuteNonQuery();
 

@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\API\\API.csproj": {}
+    "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\API\\API.csproj": {
+    "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\API\\API.csproj",
+        "projectUniqueName": "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\hepet\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\API\\obj\\",
+        "projectPath": "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\birdc\\.nuget\\packages\\",
+        "outputPath": "C:\\xampp\\htdocs\\TitleTownCards\\API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\hepet\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\birdc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -49,6 +45,14 @@
             "System.Data.SQLite.Core": {
               "target": "Package",
               "version": "[1.0.113.5, )"
+            },
+            "mysql": {
+              "target": "Package",
+              "version": "[5.5.14.1, )"
+            },
+            "mysql.data": {
+              "target": "Package",
+              "version": "[8.0.22, )"
             }
           },
           "imports": [

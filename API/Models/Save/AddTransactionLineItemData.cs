@@ -1,5 +1,7 @@
 using System;
-using System.Data.SQLite;
+using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 using API.Models.Interfaces.Add;
 
 namespace API.Models.Save
@@ -8,14 +10,13 @@ namespace API.Models.Save
     {
         public void AddTLI(TransactionLineItem value)
         {
-            string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
-            using var con = new SQLiteConnection(cs);
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
-            using var cmd = new SQLiteCommand(con);
-
-            cmd.CommandText = @"INSERT INTO TransactionLineItem(ProductID, ProductName, ProductPrice, ProductType, ProductDiscount, TransactionID)
+            string stm = @"INSERT INTO TransactionLineItem(ProductID, ProductName, ProductPrice, ProductType, ProductDiscount, TransactionID)
                 VALUES(@ProductID, @ProductName, @ProductPrice, @ProductType, @ProductDiscount, @TransactionID)";
+            MySqlCommand cmd = new MySqlCommand(stm, con);
             cmd.Parameters.AddWithValue("@ProductID",value.productID);
             cmd.Parameters.AddWithValue("@ProductName", value.productName);
             cmd.Parameters.AddWithValue("@ProductPrice", value.productPrice);

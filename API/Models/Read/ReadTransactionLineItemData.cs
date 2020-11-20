@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using API.Models.Interfaces.GetAll;
 using API.Models.Interfaces.Get;
-using System.Data.SQLite;
+using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 using System;
 
 namespace API.Models.Read
@@ -10,14 +12,14 @@ namespace API.Models.Read
     {
         public List<TransactionLineItem> GetAllTransactionLineItems()
         {
-            string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
-            using var con = new SQLiteConnection(cs);
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
             string stm = "SELECT * FROM TransactionLineItem";
-            using var cmd = new SQLiteCommand(stm, con);
+            MySqlCommand cmd = new MySqlCommand(stm,con);
 
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            using MySqlDataReader rdr = cmd.ExecuteReader();
             List<TransactionLineItem> allTransactionLineItems = new List<TransactionLineItem>();
             while(rdr.Read())
             {
@@ -27,15 +29,15 @@ namespace API.Models.Read
         }
         public TransactionLineItem GetTransactionLineItem(int productID)
         {
-            string cs = @"URI = file:C:\Users\birdc\source\repos\TitleTownCards\TTCDatabase.db";
-            using var con = new SQLiteConnection(cs);
+            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
+            MySqlConnection con = new MySqlConnection(cs);
             con.Open();
 
             string stm = "SELECT * FROM TransactionLineItem WHERE ProductID = @ProductID";
-            using var cmd = new SQLiteCommand(stm, con);
+            MySqlCommand cmd = new MySqlCommand(stm,con);
             cmd.Parameters.AddWithValue("@ProductID", productID);
             cmd.Prepare();
-            using SQLiteDataReader rdr = cmd.ExecuteReader();
+            using MySqlDataReader rdr = cmd.ExecuteReader();
             
             rdr.Read();
             return new TransactionLineItem(){productID = rdr.GetInt32(0), productName = rdr.GetString(1), productPrice = rdr.GetDouble(2), productType = rdr.GetString(3), productDiscount = rdr.GetDouble(4), transactionID = rdr.GetInt32(5)};

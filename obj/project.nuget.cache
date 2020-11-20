@@ -1,15 +1,11 @@
 {
   "version": 2,
-<<<<<<< HEAD
-  "dgSpecHash": "btQ1dfETPAKXxjyq6J7As06E4qN5iq6ocWj+AILKRK7A2j5k6TMup4Fn+RyK+8zV8KdtyE+Chls7wte0y9pr7w==",
-=======
-  "dgSpecHash": "2ROBREsnjFCpH7fVZy/2MdE5q1W0g25oGwKdOOHkO29TWSEIfa3wOv5AjM1NiCCyeCYtOfh3glAseWo/+Md2FQ==",
->>>>>>> main
+  "dgSpecHash": "8nLGjSazXv6Ua9beYNZ8QBuxeqcKDXaYTLu/9CDEj1b/4hAXIVHL6n/mNEKkC2HUbn47Pu0M0iu2SUly3jdARg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\TitleTownCards.csproj",
+  "projectFilePath": "C:\\xampp\\htdocs\\TitleTownCards\\TitleTownCards.csproj",
   "expectedPackageFiles": [
-<<<<<<< HEAD
     "C:\\Users\\birdc\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
+    "C:\\Users\\birdc\\.nuget\\packages\\chocolatey\\0.9.8.3\\chocolatey.0.9.8.3.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\k4os.compression.lz4\\1.1.11\\k4os.compression.lz4.1.1.11.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",
@@ -19,6 +15,7 @@
     "C:\\Users\\birdc\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\microsoft.win32.primitives\\4.0.1\\microsoft.win32.primitives.4.0.1.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\birdc\\.nuget\\packages\\mysql\\5.5.14.1\\mysql.5.5.14.1.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\mysql.data\\8.0.22\\mysql.data.8.0.22.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
@@ -99,10 +96,6 @@
     "C:\\Users\\birdc\\.nuget\\packages\\system.xml.xmldocument\\4.0.1\\system.xml.xmldocument.4.0.1.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
     "C:\\Users\\birdc\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.0.1\\system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
-=======
-    "C:\\Users\\hepet\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.113\\stub.system.data.sqlite.core.netstandard.1.0.113.nupkg.sha512",
-    "C:\\Users\\hepet\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.5\\system.data.sqlite.core.1.0.113.5.nupkg.sha512"
->>>>>>> main
   ],
   "logs": []
 }

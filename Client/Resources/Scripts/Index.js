@@ -2,11 +2,11 @@
 
 //Retrieves all products and their information
 function getProducts(){
-    const getAllProductsApiUrl = "https://localhost:5001/API/Products";
+    const getAllProductsApiUrl = "https://localhost/TitleTownCards/Client/Products";
     fetch(getAllProductsApiUrl).then(function(response){
         console.log(response);
         return response.json();
-    }).then(function(json){
+    }).then(function(json){ 
         let html = "<div class = \"table-responsive\">";
         html +=         "<table class = \"table table-striped\">";
         html +=             "<thead>" +
@@ -165,7 +165,7 @@ function getManager(ID){
 
 //Retrieves an individual Employee Name from an ID
 function getEmployee(ID){
-    const getEmployeeApiUrl = "https://localhost:5001/API/Employees/" + ID;
+    const getEmployeeApiUrl = "https://localhost/TitleTownCards/Client/Employee/" + ID;
     fetch(getEmployeeApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -221,17 +221,25 @@ function getTLI(tID){
             console.log(lineItem.transactionID);
             if(tID == lineItem.transactionID)
             {
-                html +=     "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
-                                "<div>" +
-                                    "<h6 class=\"my-0\">" + lineItem.productName + "</h6>" +
-                                " </div>" +
-                                " <span>" + lineItem.productPrice + "</span>" + 
-                            " </li>"
+                html += "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
+                            "<div>" +
+                                "<h6 class=\"my-0\">" + lineItem.productName + "</h6>" +
+                            " </div>" +
+                            " <span class = \"text-muted\"> $" + lineItem.productPrice + "</span>" + 
+                        "</li>"
             }
         })
-        html +=             "</tbody>" +
-                        "</table>" +
-                    "</div>";
+        html +=         "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
+                            "<div>" +
+                                "<h6 class = \"my-0\">" + 'Discount' + "</h6>" +
+                            "</div>" + 
+                            "<span> $" + lineItem.productDiscount + "</span>" +
+                        "</li>" + 
+                        "<li class = \"list-group-item d-flex justify-content-between\">" +
+                            "<span>" + 'Total' + "</span>" +
+                            "<strong> $" + + "</strong>" +
+                        "</li>" +
+                    "</ul>";
         document.getElementById("cart").innerHTML = html;     
     }).catch(function(error){
         console.log(error);

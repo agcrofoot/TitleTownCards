@@ -35,12 +35,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Customers.html">
-                                <span data-feather="users"></span>
-                                Customers
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="Reports.html">
                                 <span data-feather="bar-chart-2"></span>
                                 Reports
@@ -94,7 +88,7 @@
                             <nav class="nav nav-masthead justify-content-center">
                                 <a class="nav-link" href="HomePage.html">Home</a>
                                 <a class="nav-link" href="Inventory.html">Inventory</a>
-                                <a class="nav-link" href="ManagerView.html">Manager View</a>
+                                <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                             </nav>
                         </div>
                     </header>
@@ -103,8 +97,26 @@
                 <!--<canvas class="my-4" id="myChart" width="900" height="380"></canvas>-->
 
                 <h2>Inventory</h2>
-                <div id=allProducts>
+                <div class = "table-responsive">
+                    <table class = "table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope = "col">ProductID</th>
+                                <th scope = "col">Name</th>
+                                <th scope = "col">Price</th>
+                                <th scope = "col">Type</th>
+                                <th scope = "col">Status</th>
+                                <th scope = "col">Discount</th>
+                                <th scope = "col">Date Ordered</th>
+                                <th scope = "col">Date Added</th>
+                                <th scope = "col">Manager</th>
+                                <th scope = "col">Employee</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "allProducts">
 
+                        </tbody>
+                    </table>
                 </div>
             </main>
         </div>

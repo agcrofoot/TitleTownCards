@@ -31,12 +31,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Customers.html">
-                                <span data-feather="users"></span>
-                                Customers
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="Reports.html">
                                 <span data-feather="bar-chart-2"></span>
                                 Reports
@@ -87,13 +81,29 @@
                             <nav class="nav nav-masthead justify-content-center">
                                 <a class="nav-link" href="HomePage.html">Home</a>
                                 <a class="nav-link" href="Inventory.html">Inventory</a>
-                                <a class="nav-link" href="ManagerView.html">Manager View</a>
+                                <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                             </nav>
                         </div>
                     </header>
                 </div>
-                <div id = "transactions">
-                    
+                <div class = "table-responsive">
+                    <table class = "table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope = "col">Transaction ID</th>
+                                <th scope = "col">Date of Transaction</th>
+                                <th scope = "col">Total</th>
+                                <th scope = "col">Manager ID</th>
+                                <th scope = "col">Manager</th>
+                                <th scope = "col">Employee ID</th>
+                                <th scope = "col">Employee</th>
+                                <th scope = "col">Member ID</th>
+                            </tr>
+                        </thead>
+                        <tbody id = "transactions">
+
+                        </tbody>
+                    </table>
                 </div>
             </main>
         </div>

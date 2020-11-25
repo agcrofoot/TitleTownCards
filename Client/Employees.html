@@ -8,7 +8,7 @@
     <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
     <title>Title Town Cards</title>
 </head>
-<body onload = "getProducts()">
+<body onload="getEmployees()">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -19,54 +19,27 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="Inventory.html">
+                            <a class="nav-link active" href="ManagerView.html">
                                 <span data-feather="home"></span>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Products.html">
+                            <a class="nav-link" href="Managers.html">
                                 <span data-feather="shopping-cart"></span>
-                                Products
+                                Managers
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Reports.html">
+                            <a class="nav-link" href="Employees.html">
+                                <span data-feather="users"></span>
+                                Employees
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Members.html">
                                 <span data-feather="bar-chart-2"></span>
-                                Reports
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Orders.html">
-                                <span data-feather="bar-chart-2"></span>
-                                Orders
-                            </a>
-                        </li>
-                    </ul>
-  
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Current month
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Last quarter
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Year-end sale
+                                Members
                             </a>
                         </li>
                     </ul>
@@ -88,26 +61,21 @@
                 </div>
                 <div>
                     <p class="lead">
-                        <a href="AddProduct.html" class="btn btn-md btn-danger">Add Product to Inventory</a>
+                        <a href="AddEmployee.html" class="btn btn-md btn-danger">Add Employee</a>
                     </p>
                 </div>
                 <div class = "table-responsive">
                     <table class = "table table-striped">
                         <thead>
                             <tr>
-                                <th scope = "col">ProductID</th>
+                                <th scope = "col">EmployeeID</th>
                                 <th scope = "col">Name</th>
-                                <th scope = "col">Price</th>
-                                <th scope = "col">Type</th>
-                                <th scope = "col">Status</th>
-                                <th scope = "col">Discount</th>
-                                <th scope = "col">Date Ordered</th>
-                                <th scope = "col">Date Added</th>
-                                <th scope = "col">Manager</th>
-                                <th scope = "col">Employee</th>
+                                <th scope = "col">Phone</th>
+                                <th scope = "col">Email</th>
+                                <th scope = "col">Address</th>
                             </tr>
                         </thead>
-                        <tbody id = "allProducts">
+                        <tbody id = "allEmployees">
 
                         </tbody>
                     </table>

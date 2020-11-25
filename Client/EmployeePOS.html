@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Latest compiled and minified CSS -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
     <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
     <title>Title Town Cards</title>
 </head>
-<body>
+<body class = "bg-light">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -20,23 +20,43 @@
                 <nav class="nav nav-masthead justify-content-center">
                     <a class="nav-link" href="HomePage.html">Home</a>
                     <a class="nav-link" href="Inventory.html">Inventory</a>
-                    <a class="nav-link" href="ManagerView.html">Manager View</a>
+                    <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                 </nav>
             </div>
         </header>
 
-        <div id= "search">
-            <h1 class="h3 mb-3 font-weight-normal"></h1>
-            <form onsubmit="return false" method = "GET">
-                <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
-                <input type="submit" value = "Search" onclick = "getProduct(document.getElementById('ID').value)"/>
-            </form>
-        </div>
-        <div id = "product">
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-md-8 order-md-1">
+                    <h4 class = "mb-3">Enter the ID of the Product</h4>
+                    <form onsubmit="return false" name = "AddToCart" method = "GET">
+                        <div class = "row">
+                            <div class = "col-md-6 mb-3">
+                                <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
+                                <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + document.getElementById('tID').innerHTML +'')"/>
+                            </div>
+                        </div>
+                    </form>
+                    <div class = "column" id = "product">
 
+                    </div> 
+                    <div id = "tID" style = "display: none;">
+
+                    </div>
+                </div>
+                <div class = "col-md-4 order-md-2 mb-4">
+                    <h4 class = "d-flex justify-content-between align-items-center mb-3">
+                        <span class = "text-muted">Cart</span>
+                        <span class = "badge badge-secondary badge-pill" id = "noOfItems">"getNoOfItems()"</span>
+                    </h4>
+                    <div id = "cart">
+
+                    </div>
+                </div>
+            </div>
         </div>
-        
     </div>
+
 
     <!-- Latest compiled and minified JavaScript -->
     <script src = "https://code.jquery.com/jquery-latest.js"></script>

@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
     <title>Title Town Cards</title>
 </head>
-<body>
+<body class="text-center">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -17,29 +17,15 @@
         <header class="masthead mb-auto">
             <div class="inner text-center">
                 <h3 class="masthead-brand" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Title Town Cards</h3>
-                <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="HomePage.html">Home</a>
-                    <a class="nav-link" href="Inventory.html">Inventory</a>
-                    <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
-                </nav>
             </div>
         </header>
-
-        <div id= "start">
-            <form onsubmit="return false" style="text-align:center" method = "GET">
-                <h1 class="h3 mb-3 font-weight-normal">Enter Your Phone Number or Press Start to Start Checking Out</h1>
-                <input type="tel" name = "memberPhone" id = "MemPhone" placeholder = "Enter Phone"/>
-                <input type="submit" value = "Enter" onclick = "getMember(document.getElementById('MemPhone').value)"/>
-            </form>
-            <div class = "text-center">
-                <input type="submit" value = "Start" onclick = "getTransactionID()" href = "CustomerPOS.html"/>
-            </div>
-        </div>
-        <div id = "product">
-
-        </div>
-
-        
+    
+        <form onsubmit = "return false" class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal">Please Enter Your Manager ID</h1>
+            <label for="inputManagerID" class="sr-only">Manager ID</label>
+            <input type="password" id="inputManagerID" class="form-control" placeholder="ID" required>
+            <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="getManagerID(document.getElementById('inputManagerID').value)">Continue</button>
+        </form>
     </div>
 
     <!-- Latest compiled and minified JavaScript -->

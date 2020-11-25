@@ -10,23 +10,32 @@ namespace API.Models.Save
     {
         public void AddManager(Manager value)
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
+            DBConnect db = new DBConnect();
+            bool isOpen = db.OpenConnection();
 
-            Random random = new Random();
-            int randomNumber = random.Next(100, 1001);
+            if(isOpen)
+            {
+                MySqlConnection conn = db.GetConn();
+                MySqlCommand cmd = new MySqlCommand();
 
-            string stm = @"INSERT INTO Manager(ManagerID, ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
-            VALUES(@ManagerID, @ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";
-            MySqlCommand cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@ManagerID", randomNumber);
-            cmd.Parameters.AddWithValue("@ManagerName",value.managerName);
-            cmd.Parameters.AddWithValue("@ManagerPhone",value.managerPhone);
-            cmd.Parameters.AddWithValue("@ManagerEmail",value.managerEmail);
-            cmd.Parameters.AddWithValue("@ManagerAddress",value.managerAddress);
-            cmd.Prepare();
-            cmd.ExecuteNonQuery();
+                cmd.Connection = conn;
+
+                Random random = new Random();
+                int randomNumber = random.Next(100, 1001);
+
+                cmd.CommandText = @"INSERT INTO Manager(ManagerID, ManagerName, ManagerPhone, ManagerEmail, ManagerAddress)
+                VALUES(@ManagerID, @ManagerName, @ManagerPhone, @ManagerEmail, @ManagerAddress)";
+                cmd.Parameters.AddWithValue("@ManagerID", randomNumber);
+                cmd.Parameters.AddWithValue("@ManagerName",value.managerName);
+                cmd.Parameters.AddWithValue("@ManagerPhone",value.managerPhone);
+                cmd.Parameters.AddWithValue("@ManagerEmail",value.managerEmail);
+                cmd.Parameters.AddWithValue("@ManagerAddress",value.managerAddress);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                db.CloseConnection();
+            }
         }
     }
 }

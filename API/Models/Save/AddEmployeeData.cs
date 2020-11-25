@@ -10,23 +10,32 @@ namespace API.Models.Save
     {
         public void AddEmployee(Employee value)
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
-            Random random = new Random();
-            int randomNumber = random.Next(10, 101);
+            DBConnect db = new DBConnect();
+            bool isOpen = db.OpenConnection();
 
-            string stm = @"INSERT INTO Employee(EmployeeID, EmployeeName, EmployeePhone, EmployeeEmail, EmployeeAddress, ManagerID)
-                VALUES(@EmployeeID, @EmployeeName, @EmployeePhone, @EmployeeEmail, @EmployeeAddress, @ManagerID)";
-            MySqlCommand cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@EmployeeID", randomNumber);
-            cmd.Parameters.AddWithValue("@EmployeeName", value.employeeName);
-            cmd.Parameters.AddWithValue("@EmployeePhone",value.employeePhone);
-            cmd.Parameters.AddWithValue("@EmployeeEmail",value.employeeEmail);
-            cmd.Parameters.AddWithValue("@EmployeeAddress", value.employeeAddress);
-            cmd.Parameters.AddWithValue("@ManagerID",value.managerID);
-            cmd.Prepare();
-            cmd.ExecuteNonQuery();
+            if(isOpen)
+            {
+                MySqlConnection conn = db.GetConn();
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = conn;
+
+                Random random = new Random();
+                int randomNumber = random.Next(10, 101);
+
+                cmd.CommandText = @"INSERT INTO Employee(EmployeeID, EmployeeName, EmployeePhone, EmployeeEmail, EmployeeAddress)
+                VALUES(@EmployeeID, @EmployeeName, @EmployeePhone, @EmployeeEmail, @EmployeeAddress)";
+                cmd.Parameters.AddWithValue("@EmployeeID", randomNumber);
+                cmd.Parameters.AddWithValue("@EmployeeName", value.employeeName);
+                cmd.Parameters.AddWithValue("@EmployeePhone",value.employeePhone);
+                cmd.Parameters.AddWithValue("@EmployeeEmail",value.employeeEmail);
+                cmd.Parameters.AddWithValue("@EmployeeAddress", value.employeeAddress);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                db.CloseConnection();
+            }
         }
     }
 }

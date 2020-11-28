@@ -97,8 +97,8 @@ $query = "CREATE TABLE `ttowncards`.`Product`
 `ProductDiscount`   INT , 
 `DateOrdered`       TEXT NOT NULL , 
 `DateAddedToInv`    TEXT ,
-`ManagerID`         INT NOT NULL , 
-`EmployeeID`        INT NOT NULL ,
+`ManagerID`         INT  , 
+`EmployeeID`        INT  ,
 PRIMARY KEY         (`ProductID`) , 
 FOREIGN KEY         (`ManagerID`)
     REFERENCES `Manager` (`ManagerID`), 
@@ -194,8 +194,8 @@ $query = "INSERT INTO `ttowncards`.`Member` (`MemberFName`, `MemberLName`, `Memb
 
             //Product
             echo "<br/> Product: <br/>";
-$query = "INSERT INTO `ttowncards`.`Product` (`ProductName`, `ProductPrice`, `ProductType`, `ProductStatus`, `ProductDiscount`, `DateOrdered`, `DateAddedToInv`, `ManagerID`, `EmployeeID`)
-        VALUES('2020 Albert Pujols - Los Angeles Angels: PSA 7', 10.00, 'Baseball Card', 'Sold', 0, '10/11/2020', '11/03/2020', 100, 1)";
+$query = "INSERT INTO `ttowncards`.`Product` (`ProductName`, `ProductPrice`, `ProductType`, `ProductStatus`, `ProductDiscount`, `DateOrdered`, `DateAddedToInv`, `EmployeeID`)
+        VALUES('2020 Albert Pujols - Los Angeles Angels: PSA 7', 10.00, 'Baseball Card', 'Sold', 0, '10/11/2020', '11/03/2020', 1)";
         $query = mysqli_query($connection, $query);
         checkQuery($query);
 

@@ -6,7 +6,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
-    <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
+    <link rel = "stylesheet" href = "./Resources/CSS/POS.css">
     <title>Title Town Cards</title>
 </head>
 <body class = "bg-light">
@@ -16,12 +16,22 @@
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner text-center">
-                <h3 class="masthead-brand" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Title Town Cards</h3>
+                <h3 class="masthead-brand">Title Town Cards</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="HomePage.html">Home</a>
-                    <a class="nav-link" href="Inventory.html">Inventory</a>
+                    <a class="nav-link" href="UIStartPage.html">Customer</a>
+                    <a class="nav-link" href="EmployeeStartPage.html">Employee</a>
                     <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                 </nav>
+                <script>
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var managerName = urlParams.get('managerName');
+                    var employeeName = urlParams.get('employeeName');
+                    var managerID = urlParams.get('managerID');
+                    var employeeID = urlParams.get('employeeID');
+                    var TID = urlParams.get('TID');
+                    document.write("On duty Manager: " + managerName + "<br>");
+                    document.write("On duty Employee: " + employeeName + "<br>");
+                </script>
             </div>
         </header>
 
@@ -30,19 +40,14 @@
                 <div class = "col-md-8 order-md-1">
                     <h4 class = "mb-3">Enter the ID of the Product</h4>
                     <form onsubmit="return false" name = "AddToCart" method = "GET">
-                        <div class = "row">
-                            <div class = "col-md-6 mb-3">
-                                <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
-                                <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + document.getElementById('tID').innerHTML +'')"/>
-                            </div>
-                        </div>
+                        <form onsubmit="return false" name = "AddToCart" method = "GET">
+                            <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
+                            <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + managerName + '','' + managerID + '','' + employeeName + '','' + employeeID + '','' + TID + '')"/>
+                        </form>
                     </form>
                     <div class = "column" id = "product">
 
                     </div> 
-                    <div id = "tID" style = "display: none;">
-
-                    </div>
                 </div>
                 <div class = "col-md-4 order-md-2 mb-4">
                     <h4 class = "d-flex justify-content-between align-items-center mb-3">
@@ -50,6 +55,9 @@
                         <span class = "badge badge-secondary badge-pill" id = "noOfItems">"getNoOfItems()"</span>
                     </h4>
                     <div id = "cart">
+
+                    </div>
+                    <div id = "transaction" style="display: none;">
 
                     </div>
                 </div>

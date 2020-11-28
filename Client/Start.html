@@ -24,10 +24,10 @@
             <h1 class="h3 mb-3 font-weight-normal">Please Enter Your Manager ID</h1>
             <label for="inputManagerID" class="sr-only">Manager ID</label>
             <input type="password" id="inputManagerID" class="form-control" placeholder="ID" required>
-            <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="entryGetManager(document.getElementById('inputManagerID').value)">Continue</button>
+            <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="startGetManager(document.getElementById('inputManagerID').value)">Continue</button>
         </form>
         <script>
-            function entryGetManager(ID)
+            function startGetManager(ID)
             {
                 const getManagerApiUrl = "https://title-town-cards-api.herokuapp.com/API/Managers";
                 console.log(getManagerApiUrl);

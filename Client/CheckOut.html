@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <link rel = "stylesheet" href = "./Resources/CSS/POS.css">
+    <title>Title Town Cards</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
+</head>
+<body onload = "getTransaction()" class = "bg-light">
+   <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner text-center">
+                <h3 class="masthead-brand">Title Town Cards</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="UIStartPage.html">Customer</a>
+                    <a class="nav-link" href="EmployeeStartPage.html">Employee</a>
+                    <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
+                </nav>
+                <script>
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var managerName = urlParams.get('managerName');
+                    var employeeName = urlParams.get('employeeName');
+                    var memberName = urlParams.get('memberName');
+                    var managerID = urlParams.get('managerID');
+                    var employeeID = urlParams.get('employeeID');
+                    var memberID = urlParams.get('memberID');
+                    var TID = urlParams.get('TID');
+                    var Total = urlParams.get('Total');
+                    document.write("On duty Manager: " + managerName + "<br>");
+                    document.write("On duty Employee: " + employeeName + "<br>");
+                </script>
+            </div>
+        </header>
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-md-4 order-md-1">
+                    <h4 class = "d-flex justify-content-between align-items-center mb-3">
+                        <span class = "text-muted">Cart</span>
+                        <span class = "badge badge-secondary badge-pill" id = "noOfItems"></span>
+                    </h4>
+                    <div id = "fullCart">
+                        
+                    </div>
+                </div>
+                <div class = "col-md-4 order-md-2 mb-4">
+                    <h4 class="mb-3">Payment</h4>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                            <label class="custom-control-label" for="credit">Credit card</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="cash" name="paymentMethod" type="radio" class="custom-control-input" required>
+                            <label class="custom-control-label" for="cash">Cash</label>
+                        </div>
+                    </div>
+                    <form onsubmit="return false" name = "CheckOut" method = "POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-name">Name on card</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                <small class="text-muted">Full name as displayed on card</small>
+                                <div class="invalid-feedback">
+                                Name on card is required
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-number">Credit card number</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                                <div class="invalid-feedback">
+                                Credit card number is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Expiration</label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                                <div class="invalid-feedback">
+                                Expiration date required
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-cvv">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                <div class="invalid-feedback">
+                                Security code required
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-lg-6 mb-6">
+                                <input type = "submit" value="Check-Out" onclick="updateTransaction('' + TID + '', '' + Total + ''); ">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class = "col-md-4 order-md-3 mb-4">
+                    <div id = "view receipt">
+                        <input type="submit" value = "View Receipt" onclick = "showAndHide()"/>
+                    </div>
+                    <div id = "show and hide">
+                        <div id = "show and hide">
+                            <script>
+                                function showAndHide()
+                                {
+                                    console.log("show and hide");
+                                    var x = document.getElementById('choose');
+                                    if (x.style.display == 'none')
+                                    {
+                                        x.style.display = 'block';
+                                    }
+                                    else
+                                    {
+                                        x.style.display = 'none';
+                                    }
+                                    let html = "<div class=\"modal\" tabindex=\"-1\">" +
+                                        "<div class=\"modal-dialog\">" +
+                                            "<div class=\"modal-content\">" +
+                                                "<div class=\"modal-header\">" +
+                                                    "<h5 class=\"modal-title\">Title Town Cards</h5>" +
+                                                    "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">" +
+                                                            "<span aria-hidden=\"true\">&times;</span>" +
+                                                    "</button>" +
+                                                "</div>" +
+                                                "<div class=\"modal-body\">" +
+                                                    "<p>Modal body text goes here.</p>" +
+                                                "</div>" +
+                                                "<div class=\"modal-footer\">" +
+                                                    "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">End Checkout</button>" +
+                                                "</div>" +
+                                            "</div>" +
+                                        "</div>" +
+                                    "</div>";
+                                    document.getElementById("choose").innerHTML = html;
+                                }
+                            </script>
+                        </div>
+                        <div id = "choose" style = "display: none;">
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getTransaction(){
+            const getTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";
+            fetch(getTransactionApiUrl).then(function(response){
+                console.log(response);
+                return response.json();
+            }).then(function(json){
+                var html =  "<ul class=\"list-group mb-3\" style = \"max-width: 300px; justify-content: left;\">";
+                var discount = 0;
+                var Total = 0;
+                var urlParams = new URLSearchParams(window.location.search);
+                var TID = urlParams.get('TID');
+                json.forEach((lineItem) => {
+                    console.log(TID);
+                    console.log(lineItem.transactionID);
+                    if(TID == lineItem.transactionID)
+                    {
+                        html += "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
+                                    "<div>" +
+                                        "<h6 class=\"my-0\">" + lineItem.productName + "</h6>" +
+                                    " </div>" +
+                                    " <span class = \"text-muted\"> $" + lineItem.productPrice + "</span>" + 
+                                "</li>"
+                        discount += lineItem.productDiscount;
+                        Total += lineItem.productPrice;
+                    }
+                })
+                html +=         "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
+                                    "<div>" +
+                                        "<h6 class = \"my-0\">" + 'Discount' + "</h6>" +
+                                    "</div>" + 
+                                    "<span> $" + discount + "</span>" +
+                                "</li>" + 
+                                "<li class = \"list-group-item d-flex justify-content-between\">" +
+                                    "<span>" + 'Total' + "</span>" +
+                                    "<strong> $" + Total + "</strong>" +
+                                    "<hr class=\"mb-4\">" +
+                                "</li>" +
+                            "</ul>";
+                document.getElementById("fullCart").innerHTML = html;  
+            }).catch(function(error){
+                console.log(error);
+            });
+        }
+    </script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src = "https://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

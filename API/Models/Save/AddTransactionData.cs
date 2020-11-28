@@ -19,17 +19,37 @@ namespace API.Models.Save
                 MySqlCommand cmd = new MySqlCommand();
 
                 cmd.Connection = conn;
+                if(value.memberID == 0)
+                {
+                    value.memberID = null;
+                }
 
-                cmd.CommandText = @"INSERT INTO Transactions(TransactionID, TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
-                VALUES(@TransactionID, @TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
-                cmd.Parameters.AddWithValue("@TransactionID",value.transactionID);
-                cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now.ToString());
-                cmd.Parameters.AddWithValue("@TransactionCost", value.transactionCost);
-                cmd.Parameters.AddWithValue("@ManagerID", "100");
-                cmd.Parameters.AddWithValue("@ManagerName","Preston Gates");
-                cmd.Parameters.AddWithValue("@EmployeeID","20");
-                cmd.Parameters.AddWithValue("@EmployeeName","Kevin");
-                cmd.Parameters.AddWithValue("@MemberID",value.memberID);
+                if(value.memberID == null)
+                {
+                    cmd.CommandText = @"INSERT INTO Transactions(TransactionID, TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName)
+                    VALUES(@TransactionID, @TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName)";
+                    cmd.Parameters.AddWithValue("@TransactionID",value.transactionID);
+                    cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now.ToString());
+                    cmd.Parameters.AddWithValue("@TransactionCost", value.transactionCost);
+                    cmd.Parameters.AddWithValue("@ManagerID", value.managerID);
+                    cmd.Parameters.AddWithValue("@ManagerName",value.managerName);
+                    cmd.Parameters.AddWithValue("@EmployeeID", value.employeeID);
+                    cmd.Parameters.AddWithValue("@EmployeeName",value.employeeName);
+                }
+                else
+                {
+                    cmd.CommandText = @"INSERT INTO Transactions(TransactionID, TransactionDate, TransactionCost, ManagerID, ManagerName, EmployeeID, EmployeeName, MemberID)
+                    VALUES(@TransactionID, @TransactionDate, @TransactionCost, @ManagerID, @ManagerName, @EmployeeID, @EmployeeName, @MemberID)";
+                    cmd.Parameters.AddWithValue("@TransactionID",value.transactionID);
+                    cmd.Parameters.AddWithValue("@TransactionDate", DateTime.Now.ToString());
+                    cmd.Parameters.AddWithValue("@TransactionCost", value.transactionCost);
+                    cmd.Parameters.AddWithValue("@ManagerID", value.managerID);
+                    cmd.Parameters.AddWithValue("@ManagerName",value.managerName);
+                    cmd.Parameters.AddWithValue("@EmployeeID", value.employeeID);
+                    cmd.Parameters.AddWithValue("@EmployeeName",value.employeeName);
+                    cmd.Parameters.AddWithValue("@MemberID",value.memberID);
+                }
+                
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
 

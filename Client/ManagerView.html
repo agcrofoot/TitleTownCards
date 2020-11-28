@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
+    <link rel = "stylesheet" href = "./Resources/CSS/Entry.css">
     <title>Title Town Cards</title>
 </head>
 <body>
@@ -19,9 +19,9 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="ManagerView.html">
+                            <a class="nav-link" href="ManagerView.html">
                                 <span data-feather="home"></span>
-                                Dashboard <span class="sr-only">(current)</span>
+                                Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
@@ -42,6 +42,51 @@
                                 Members
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Products.html">
+                                <span data-feather="shopping-cart"></span>
+                                Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Reports.html">
+                                <span data-feather="bar-chart-2"></span>
+                                Reports
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Orders.html">
+                                <span data-feather="bar-chart-2"></span>
+                                Orders
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Saved reports</span>
+                        <a class="d-flex align-items-center text-muted" href="#">
+                            <span data-feather="plus-circle"></span>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                Current month
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                Last quarter
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="file-text"></span>
+                                Year-end sale
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -50,14 +95,66 @@
                 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
                     <header class="masthead mb-auto">
                         <div class="inner">
-                            <h3 class="masthead-brand" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Title Town Cards</h3>
+                            <h3 class="masthead-brand">Title Town Cards</h3>
                             <nav class="nav nav-masthead justify-content-center">
-                                <a class="nav-link" href="HomePage.html">Home</a>
-                                <a class="nav-link" href="Inventory.html">Inventory</a>
+                                <a class="nav-link" href="UIStartPage.html">Customer</a>
+                                <a class="nav-link" href="EmployeeStartPage.html">Employee</a>
                                 <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                             </nav>
                         </div>
                     </header>
+                </div>
+                <script>
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var managerName = urlParams.get('manager');
+                    document.write("Welcome " + managerName + "<br>");
+                </script>
+                <div id= "set manager">
+                    <form onsubmit="return false" style="text-align:center" method = "GET">
+                        <h1 class="h3 mb-3 font-weight-normal">Set the Manager for this shift</h1>
+                        <input type="number" name = "managerID" id = "MgrID" placeholder = "Manager ID"/>
+                        <input type="submit" value = "Enter" onclick = "getManager(document.getElementById('MgrID').value)"/>
+                    </form>
+                    <div id = "karen" style = "display: none;">
+                        
+                    </div>
+                </div>
+                <div id= "set employee">
+                    <form onsubmit="return false" style="text-align:center" method = "GET">
+                        <h1 class="h3 mb-3 font-weight-normal">Set the Employee on duty for this shift</h1>
+                        <input type="number" name = "employeeID" id = "EmpID" placeholder = "Employee ID"/>
+                        <input type="submit" value = "Enter" onclick = "getEmployee(document.getElementById('EmpID').value)"/>
+                    </form>
+                    <div id = "emp" style = "display: none;">
+                        
+                    </div>
+                </div>
+                <div id = "start">
+                    <input type="submit" value = "Start" onclick = "showAndHide('' + document.getElementById('EmpID').value + '','' + document.getElementById('EmployeeName').innerHTML + '','' + document.getElementById('MgrID').value + '','' + document.getElementById('ManagerName').innerHTML + '')"/>
+                </div>
+                <div id = "show and hide">
+                    <script>
+                        function showAndHide(eID, eName, mID, mName)
+                        {
+                            console.log(eID + "show and hide");
+                            var x = document.getElementById('choose');
+                            if (x.style.display == 'none')
+                            {
+                                x.style.display = 'block';
+                            }
+                            else
+                            {
+                                x.style.display = 'none';
+                            }
+                            var para = "?managerName=" + mName + "&managerID=" + mID + "&employeeName=" + eName + "&employeeID=" + eID;
+                            var html =  "<a href = \"UIStartPage.html" +  para + "\">Customer </a>" +
+                                        "<a href = \"EmployeeStartPage.html" + para + "\"> Employee</a>";
+                            document.getElementById("choose").innerHTML = html;
+                        }
+                    </script>
+                </div>
+                <div id = "choose" style = "display: none;">
+            
                 </div>
             </main>
         </div>

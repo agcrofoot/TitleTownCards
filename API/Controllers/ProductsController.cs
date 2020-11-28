@@ -8,8 +8,10 @@ using API.Models;
 using API.Models.Interfaces.Get;
 using API.Models.Interfaces.GetAll;
 using API.Models.Interfaces.Add;
+using API.Models.Interfaces.Update;
 using API.Models.Save;
 using API.Models.Read;
+using API.Models.Update;
 using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
@@ -48,8 +50,10 @@ namespace API.Controllers
         // PUT: api/Products/5
         [EnableCors("Another Policy")]
         [HttpPut("{productID}")]
-        public void Put(int productID, [FromBody] string value)
+        public void Put(int productID, [FromBody] Product value)
         {
+            IUpdateProducts editObject = new UpdateProductData();
+            editObject.EditProduct(value);
         }
 
         // DELETE: api/ApiWithActions/5

@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Models.Interfaces.Get;
 using API.Models.Interfaces.GetAll;
-using API.Models.Read;
 using API.Models.Interfaces.Add;
+using API.Models.Interfaces.Update;
 using API.Models.Save;
+using API.Models.Read;
+using API.Models.Update;
 using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
@@ -50,6 +52,8 @@ namespace API.Controllers
         [HttpPut("{managerID}")]
         public void Put(int managerID, [FromBody] Manager value)
         {
+            IUpdateManagers editObject = new UpdateManagerData();
+            editObject.EditManager(value);
         }
 
         // DELETE: api/ApiWithActions/5

@@ -1,4 +1,4 @@
-<?php include_once "HomePage.html"; ?>
+<?php include_once "Start.html"; ?>
 
 
 <!-- THIS IS A DOC TO TEST DATABASE CONNECTION (with PHPmyadmin) -->

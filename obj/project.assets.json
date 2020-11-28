@@ -83,11 +83,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\TitleTownCards.csproj",
+      "projectUniqueName": "C:\\xampp\\htdocs\\mis321\\TitleTownCards-1\\TitleTownCards.csproj",
       "projectName": "TitleTownCards",
-      "projectPath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\TitleTownCards.csproj",
+      "projectPath": "C:\\xampp\\htdocs\\mis321\\TitleTownCards-1\\TitleTownCards.csproj",
       "packagesPath": "C:\\Users\\hepet\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\obj\\",
+      "outputPath": "C:\\xampp\\htdocs\\mis321\\TitleTownCards-1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

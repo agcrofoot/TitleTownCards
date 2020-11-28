@@ -14,7 +14,18 @@ namespace API
     public class Program
     {
         public static void Main(string[] args)
-        {
+        { 
+
+            <?php CreateDatabase(); ?>
+
+            string cs = @"server=localhost;userid=root;password=;database=ttowncards";
+
+            using var con = new MySqlConnection(cs);
+            con.Open();
+
+            Console.WriteLine($"MySQL version : {con.ServerVersion}");
+
+
             // CreateDatabase createObject = new CreateDatabase();
             // createObject.Create();
             CreateHostBuilder(args).Build().Run();
@@ -25,5 +36,6 @@ namespace API
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+        
     }
 }

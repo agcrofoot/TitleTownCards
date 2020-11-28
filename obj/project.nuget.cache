@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2ROBREsnjFCpH7fVZy/2MdE5q1W0g25oGwKdOOHkO29TWSEIfa3wOv5AjM1NiCCyeCYtOfh3glAseWo/+Md2FQ==",
+  "dgSpecHash": "y9+QJO228xFinBTlreqpCzb0gRzYirs4oyNt1nZsKwxG1BE+57Sc0XKQNrq42aZqJ7r4eBCVD00B0QQIIwVerQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hepet\\source\\repos\\TitleTownCards-1\\TitleTownCards.csproj",
+  "projectFilePath": "C:\\xampp\\htdocs\\mis321\\TitleTownCards-1\\TitleTownCards.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hepet\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.113\\stub.system.data.sqlite.core.netstandard.1.0.113.nupkg.sha512",
     "C:\\Users\\hepet\\.nuget\\packages\\system.data.sqlite.core\\1.0.113.5\\system.data.sqlite.core.1.0.113.5.nupkg.sha512"

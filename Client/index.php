@@ -1,4 +1,6 @@
 <?php include "db.php"; ?>
+<?php include "CreateDatabase.php"; ?>
+
 
 <!-- THIS IS A DOC TO TEST DATABASE CONNECTION (with PHPmyadmin) -->
 
@@ -15,7 +17,7 @@
     
     <?php
 
-       
+       CreateDatabase();
 
     ?>
 

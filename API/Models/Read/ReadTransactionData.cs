@@ -26,10 +26,27 @@ namespace API.Models.Read
                 {
                     while(rdr.Read())
                     {
-                        allTransactions.Add(new Transaction(){transactionID = rdr.GetInt32(0), transactionDate = rdr.GetString(1), transactionCost = rdr.GetDouble(2), managerID = rdr.GetInt32(3), managerName = rdr.GetString(4), employeeID = rdr.GetInt32(5), employeeName = rdr.GetString(6), memberID = rdr.GetInt32(7)});
-                    
+                        Transaction temp = new Transaction();
+                        temp.transactionID = rdr.GetInt32(0);
+                        temp.transactionDate = rdr.GetString(1); 
+                        temp.transactionCost = rdr.GetDouble(2); 
+                        temp.managerID = rdr.GetInt32(3);
+                        temp.managerName = rdr.GetString(4); 
+                        temp.employeeID = rdr.GetInt32(5);
+                        temp.employeeName = rdr.GetString(6); 
+                        if(rdr["MemberID"] == DBNull.Value)
+                        {
+                            temp.memberID = 0;
+                        }
+                        else
+                        {
+                            temp.memberID = rdr.GetInt32(7);
+                        }
+                        
+                        allTransactions.Add(temp);
                     }
                     db.CloseConnection();
+                    Console.WriteLine("Read in values");
                     return allTransactions;
                 }
             }
@@ -52,7 +69,22 @@ namespace API.Models.Read
                 cmd.Prepare();
                 using MySqlDataReader rdr = cmd.ExecuteReader();
                 rdr.Read();
-                Transaction transaction = new Transaction(){transactionID = rdr.GetInt32(0), transactionDate = rdr.GetString(1), transactionCost = rdr.GetDouble(2), managerID = rdr.GetInt32(3), managerName = rdr.GetString(4), employeeID = rdr.GetInt32(5), employeeName = rdr.GetString(6), memberID = rdr.GetInt32(7)};
+                Transaction transaction = new Transaction();
+                transaction.transactionID = rdr.GetInt32(0);
+                transaction.transactionDate = rdr.GetString(1); 
+                transaction.transactionCost = rdr.GetDouble(2); 
+                transaction.managerID = rdr.GetInt32(3);
+                transaction.managerName = rdr.GetString(4); 
+                transaction.employeeID = rdr.GetInt32(5);
+                transaction.employeeName = rdr.GetString(6); 
+                if(rdr["MemberID"] == DBNull.Value)
+                {
+                    transaction.memberID = 0;
+                }
+                else
+                {
+                    transaction.memberID = rdr.GetInt32(7);
+                }
                 db.CloseConnection();
                 return transaction;
             }

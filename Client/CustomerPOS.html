@@ -18,9 +18,10 @@
             <div class="inner text-center">
                 <h3 class="masthead-brand">Title Town Cards</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="UIStartPage.html">Customer</a>
-                    <a class="nav-link" href="EmployeeStartPage.html">Employee</a>
                     <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
+                </nav> 
+                <nav class="nav nav-masthead" style ="text-align: right;">
+                    <button type = "button" class = "btn btn-secondary" data-toggle="modal" data-target="#helpModal">Help</button>
                 </nav>
                 <script>
                     var urlParams = new URLSearchParams(window.location.search);
@@ -52,7 +53,6 @@
                 <div class = "col-md-4 order-md-2 mb-4">
                     <h4 class = "d-flex justify-content-between align-items-center mb-3">
                         <span class = "text-muted">Cart</span>
-                        <span class = "badge badge-secondary badge-pill" id = "noOfItems">"getNoOfItems()"</span>
                     </h4>
                     <div id = "cart">
 
@@ -64,8 +64,57 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Enter Employee ID</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id = "help section">
+                    <form onsubmit = "return false" class="form-signin">
+                        <label for="inputID" class="sr-only">ID</label>
+                        <input type="password" id="inputID" class="form-control" placeholder="ID" required>
+                        <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="getCart('' + TID + '')">Continue</button>
+                    </form>
+                    <div class = "modal-dialog modal-dialog-scrollable" id = "delete">
 
-
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getCart(TID){
+            const getCartApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";
+            
+            fetch(getCartApiUrl).then(function(response){
+                console.log(response);
+                return response.json();
+            }).then(function(json){
+                var html = "<ul>";
+                json.forEach((lineItem) => {
+                    if(TID == lineItem.transactionID)
+                    {
+                        html += "<li><span>" + lineItem.productName + ": $" + lineItem.productPrice + "</span>" + 
+                        " <button onclick = \"deleteTLI(" + lineItem.productID + ")\">Delete</button>";
+                    }
+                })
+                html += "</ul>";
+                document.getElementById("delete").innerHTML = html;
+            }).catch(function(error){
+                console.log(error);
+                var html = "<p>\"That item could not be found in our system. Please enter a valid ID.\"</p>";
+                document.getElementById("delete").innerHTML = html;
+            });
+        }
+    </script>
     <!-- Latest compiled and minified JavaScript -->
     <script src = "https://code.jquery.com/jquery-latest.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

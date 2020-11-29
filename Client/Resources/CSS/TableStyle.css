@@ -94,8 +94,10 @@ body {
     white-space: nowrap;
     overflow: auto;
     text-overflow: ellipsis;
+    overflow-y: scroll;
     display: block;
     width: 600px;
+    height: 400px;
 }
   
 th {

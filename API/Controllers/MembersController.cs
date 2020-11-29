@@ -9,9 +9,11 @@ using API.Models.Interfaces.Get;
 using API.Models.Interfaces.GetAll;
 using API.Models.Interfaces.Add;
 using API.Models.Interfaces.Update;
+using API.Models.Interfaces.Delete;
 using API.Models.Save;
 using API.Models.Read;
 using API.Models.Update;
+using API.Models.Delete;
 using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
@@ -61,6 +63,8 @@ namespace API.Controllers
         [HttpDelete("{memberID}")]
         public void Delete(int memberID)
         {
+            IDeleteMember deleteObject = new DeleteMemberData();
+            deleteObject.DeleteMember(memberID);
         }
     }
 }

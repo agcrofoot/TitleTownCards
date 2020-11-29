@@ -19,8 +19,6 @@
             <div class="inner text-center">
                 <h3 class="masthead-brand">Title Town Cards</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="UIStartPage.html">Customer</a>
-                    <a class="nav-link" href="EmployeeStartPage.html">Employee</a>
                     <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                 </nav>
                 <script>
@@ -40,7 +38,7 @@
         </header>
         <div class = "container">
             <div class = "row">
-                <div class = "col-md-4 order-md-1">
+                <div class = "col-md-6 order-md-1">
                     <h4 class = "d-flex justify-content-between align-items-center mb-3">
                         <span class = "text-muted">Cart</span>
                         <span class = "badge badge-secondary badge-pill" id = "noOfItems"></span>
@@ -49,7 +47,7 @@
                         
                     </div>
                 </div>
-                <div class = "col-md-4 order-md-2 mb-4">
+                <div class = "col-md-6 order-md-2 mb-4">
                     <h4 class="mb-3">Payment</h4>
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
@@ -97,57 +95,15 @@
                         </div>
                         <div class = "row">
                             <div class = "col-lg-6 mb-6">
-                                <input type = "submit" value="Check-Out" onclick="updateTransaction('' + TID + '', '' + Total + ''); ">
+                                <input type = "submit" value="Check-Out" onclick="updateTransaction('' + TID + '', '' + Total + '','' + managerName + '','' + managerID + '','' + employeeName + '','' + employeeID + ''); ">
                             </div>
                         </div>
                     </form>
                 </div>
-                <div class = "col-md-4 order-md-3 mb-4">
-                    <div id = "view receipt">
-                        <input type="submit" value = "View Receipt" onclick = "showAndHide()"/>
-                    </div>
-                    <div id = "show and hide">
-                        <div id = "show and hide">
-                            <script>
-                                function showAndHide()
-                                {
-                                    console.log("show and hide");
-                                    var x = document.getElementById('choose');
-                                    if (x.style.display == 'none')
-                                    {
-                                        x.style.display = 'block';
-                                    }
-                                    else
-                                    {
-                                        x.style.display = 'none';
-                                    }
-                                    let html = "<div class=\"modal\" tabindex=\"-1\">" +
-                                        "<div class=\"modal-dialog\">" +
-                                            "<div class=\"modal-content\">" +
-                                                "<div class=\"modal-header\">" +
-                                                    "<h5 class=\"modal-title\">Title Town Cards</h5>" +
-                                                    "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">" +
-                                                            "<span aria-hidden=\"true\">&times;</span>" +
-                                                    "</button>" +
-                                                "</div>" +
-                                                "<div class=\"modal-body\">" +
-                                                    "<p>Modal body text goes here.</p>" +
-                                                "</div>" +
-                                                "<div class=\"modal-footer\">" +
-                                                    "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">End Checkout</button>" +
-                                                "</div>" +
-                                            "</div>" +
-                                        "</div>" +
-                                    "</div>";
-                                    document.getElementById("choose").innerHTML = html;
-                                }
-                            </script>
-                        </div>
-                        <div id = "choose" style = "display: none;">
-                    
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div id = "thank you">
+
+
             </div>
         </div>
     </div>

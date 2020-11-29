@@ -26,8 +26,28 @@ namespace API.Models.Read
                 {
                     while(rdr.Read())
                     {
-                        allProducts.Add(new Product(){productID = rdr.GetInt32(0), productName = rdr.GetString(1), productPrice = rdr.GetDouble(2), productType = rdr.GetString(3), productStatus = rdr.GetString(4), productDiscount = rdr.GetDouble(5), dateOrdered = rdr.GetString(6), dateAddedToInv = rdr.GetString(7), managerID = rdr.GetInt32(8), managerName = rdr.GetString(9), employeeID = rdr.GetInt32(10), employeeName = rdr.GetString(11)});
+                        Product temp = new Product();
+                        temp.productID = rdr.GetInt32(0); 
+                        temp.productName = rdr.GetString(1);
+                        temp.productPrice = rdr.GetDouble(2);
+                        temp.productType = rdr.GetString(3);
+                        temp.productStatus = rdr.GetString(4);
+                        if(rdr["ProductDiscount"] == DBNull.Value)
+                        {
+                            temp.productDiscount = 0;
+                        }
+                        else
+                        {
+                            temp.productDiscount = rdr.GetDouble(5);
+                        }
+                        temp.dateOrdered = rdr.GetString(6);
+                        temp.dateAddedToInv = rdr.GetString(7);
+                        temp.managerID = rdr.GetInt32(8);
+                        temp.managerName = rdr.GetString(9);
+                        temp.employeeID = rdr.GetInt32(10);
+                        temp.employeeName = rdr.GetString(11);
                     
+                        allProducts.Add(temp);
                     }
                     db.CloseConnection();
                     return allProducts;
@@ -52,7 +72,26 @@ namespace API.Models.Read
                 cmd.Prepare();
                 using MySqlDataReader rdr = cmd.ExecuteReader();
                 rdr.Read();
-                Product product = new Product(){productID = rdr.GetInt32(0), productName = rdr.GetString(1), productPrice = rdr.GetDouble(2), productType = rdr.GetString(3), productStatus = rdr.GetString(4), productDiscount = rdr.GetDouble(5), dateOrdered = rdr.GetString(6), dateAddedToInv = rdr.GetString(7), managerID = rdr.GetInt32(8), managerName = rdr.GetString(9), employeeID = rdr.GetInt32(10), employeeName = rdr.GetString(11)};
+                Product product = new Product();
+                product.productID = rdr.GetInt32(0); 
+                product.productName = rdr.GetString(1);
+                product.productPrice = rdr.GetDouble(2);
+                product.productType = rdr.GetString(3);
+                product.productStatus = rdr.GetString(4);
+                if(rdr["ProductDiscount"] == DBNull.Value)
+                {
+                    product.productDiscount = 0;
+                }
+                else
+                {
+                    product.productDiscount = rdr.GetDouble(5);
+                }
+                product.dateOrdered = rdr.GetString(6);
+                product.dateAddedToInv = rdr.GetString(7);
+                product.managerID = rdr.GetInt32(8);
+                product.managerName = rdr.GetString(9);
+                product.employeeID = rdr.GetInt32(10);
+                product.employeeName = rdr.GetString(11);
                 db.CloseConnection();
                 return product;
             }

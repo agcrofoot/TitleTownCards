@@ -18,8 +18,6 @@
             <div class="inner text-center">
                 <h3 class="masthead-brand">Title Town Cards</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="UIStartPage.html">Customer</a>
-                    <a class="nav-link" href="EmployeeStartPage.html">Employee</a>
                     <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                 </nav>
                 <script>
@@ -42,7 +40,7 @@
                     <form onsubmit="return false" name = "AddToCart" method = "GET">
                         <form onsubmit="return false" name = "AddToCart" method = "GET">
                             <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
-                            <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value)"/>
+                            <input type="submit" value = "Search" onclick = "getEmployeeProduct('' + document.getElementById('ID').value)"/>
                         </form>
                     </form>
                     <div class = "column" id = "product">
@@ -52,7 +50,6 @@
                 <div class = "col-md-4 order-md-2 mb-4">
                     <h4 class = "d-flex justify-content-between align-items-center mb-3">
                         <span class = "text-muted">Cart</span>
-                        <span class = "badge badge-secondary badge-pill" id = "noOfItems">"getNoOfItems()"</span>
                     </h4>
                     <div id = "cart">
 

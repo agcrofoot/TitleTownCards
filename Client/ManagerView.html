@@ -97,8 +97,6 @@
                         <div class="inner">
                             <h3 class="masthead-brand">Title Town Cards</h3>
                             <nav class="nav nav-masthead justify-content-center">
-                                <a class="nav-link" href="UIStartPage.html">Customer</a>
-                                <a class="nav-link" href="EmployeeStartPage.html">Employee</a>
                                 <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                             </nav>
                         </div>
@@ -147,8 +145,8 @@
                                 x.style.display = 'none';
                             }
                             var para = "?managerName=" + mName + "&managerID=" + mID + "&employeeName=" + eName + "&employeeID=" + eID;
-                            var html =  "<a href = \"UIStartPage.html" +  para + "\">Customer </a>" +
-                                        "<a href = \"EmployeeStartPage.html" + para + "\"> Employee</a>";
+                            var html =  "<a class=\"btn btn-secondary btn-lg\" href = \"UIStartPage.html" +  para + "\">Customer </a>" +
+                                        "<a class=\"btn btn-secondary btn-lg\" href = \"EmployeeStartPage.html" + para + "\"> Employee</a>";
                             document.getElementById("choose").innerHTML = html;
                         }
                     </script>

@@ -35,11 +35,11 @@
         <div id= "start">
             <form onsubmit="return false" style="text-align:center" method = "GET">
                 <h1 class="h3 mb-3 font-weight-normal">Enter Your Phone Number or Press Start to Start Checking Out</h1>
-                <input type="tel" name = "memberPhone" id = "MemPhone" placeholder = "Enter Phone"/>
+                <input type="number" name = "memberPhone" id = "MemPhone" placeholder = "000-000-0000"/>
                 <input type="submit" value = "Enter" onclick = "getMember('' + document.getElementById('MemPhone').value + '','' + managerID + '','' + managerName + '','' + employeeID + '','' + employeeName + '')"/>
             </form>
             <div class = "text-center">
-                <input type="submit" value = "Start" onclick = "getTransactionID('' + managerID + '','' + managerName + '','' + employeeID + '','' + employeeName + '')"/>
+                <input type="submit" style ="margin-top: 20px;" value = "Start" onclick = "getTransactionID('' + managerID + '','' + managerName + '','' + employeeID + '','' + employeeName + '')"/>
             </div>
         </div>
         <div id = "product">

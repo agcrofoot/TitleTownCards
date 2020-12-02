@@ -10,123 +10,124 @@
 </head>
 <body onload="getMembers()">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
-    
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link" href="ManagerView.html">
-                                <span data-feather="home"></span>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Managers.html">
-                                <span data-feather="shopping-cart"></span>
-                                Managers
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Employees.html">
-                                <span data-feather="users"></span>
-                                Employees
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Members.html">
-                                <span data-feather="bar-chart-2"></span>
-                                Members
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Products.html">
-                                <span data-feather="shopping-cart"></span>
-                                Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Reports.html">
-                                <span data-feather="bar-chart-2"></span>
-                                Reports
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Orders.html">
-                                <span data-feather="bar-chart-2"></span>
-                                Orders
-                            </a>
-                        </li>
-                    </ul>
-
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                            <span data-feather="plus-circle"></span>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script type="text/JavaScript" src="./Resources/Scripts/Index.js"></script>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner text-center">
+                <h3 class="masthead-brand">Title Town Cards</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
+                </nav>
+            </div>
+        </header>
+        <nav id = "mySidebar" class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <a class="closebtn" href="javascript:void(0)" onclick = "closeNav()">
+                        &times;
+                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ManagerView.html">
+                            <span data-feather="home"></span>
+                            Dashboard
                         </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Current month
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Last quarter
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Year-end sale
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-  
-            <main role="main" class="text-center">
-                <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
-                    <header class="masthead mb-auto">
-                        <div class="inner">
-                            <h3 class="masthead-brand">Title Town Cards</h3>
-                            <nav class="nav nav-masthead justify-content-center">
-                                <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
-                            </nav>
-                        </div>
-                    </header>
-                </div>
-                <div>
-                    <p class="lead">
-                        <a href="AddMember.html" class="btn btn-md btn-danger">Add Member</a>
-                    </p>
-                </div>
-                <div class = "table-responsive">
-                    <table class = "table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope = "col">Member ID</th>
-                                <th scope = "col">Name</th>
-                                <th scope = "col">Address</th>
-                                <th scope = "col">Email</th>
-                                <th scope = "col">Date of Birth</th>
-                                <th scope = "col">Phone</th>
-                            </tr>
-                        </thead>
-                        <tbody id = "allMembers">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Managers.html">
+                            <span data-feather="shopping-cart"></span>
+                            Managers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Employees.html">
+                            <span data-feather="users"></span>
+                            Employees
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Members.html">
+                            <span data-feather="bar-chart-2"></span>
+                            Members
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Products.html">
+                            <span data-feather="shopping-cart"></span>
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reports.html">
+                            <span data-feather="bar-chart-2"></span>
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Orders.html">
+                            <span data-feather="bar-chart-2"></span>
+                            Orders
+                        </a>
+                    </li>
+                </ul>
 
-                        </tbody>
-                    </table>
-                </div>
-            </main>
+                <ul class="nav flex-column mb-2">
+                        <p class="text-muted" style ="font-size: small;">
+                            Saved Reports
+                        </p>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Current month
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Last quarter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Year-end sale
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <main role="main" id="main">
+                    <button class="openbtn"  onclick="openNav()">&#9776; Open Sidebar</button>
+                    <div class="text-center">
+                        <p class="lead">
+                            <a href="AddMember.html" class="btn btn-md btn-danger">Add Member</a>
+                        </p>
+                    </div>
+                    <div class = "table-responsive">
+                        <table class = "table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope = "col">Member ID</th>
+                                    <th scope = "col">Name</th>
+                                    <th scope = "col">Address</th>
+                                    <th scope = "col">Email</th>
+                                    <th scope = "col">Date of Birth</th>
+                                    <th scope = "col">Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody id = "allMembers">
+                    
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
         </div>
     </div>
+
     <script src = "https://code.jquery.com/jquery-latest.js"></script>
 </body> 
 </html>

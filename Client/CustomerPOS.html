@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "./Resources/CSS/POS.css">
     <title>Title Town Cards</title>
 </head>
-<body class = "bg-light">
+<body onload = "getTLI()" class = "bg-light">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -70,7 +70,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="helpModalLabel">Enter Employee ID</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" id = "help section">
@@ -85,7 +85,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

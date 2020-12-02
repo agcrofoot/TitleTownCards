@@ -53,38 +53,67 @@ body {
     color: white;
     font-weight: 700;
 }
+
 .sidebar {
-    position: fixed;
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
     top: 0;
-    bottom: 0;
     left: 0;
-    z-index: 100; /* Behind the navbar */
-    padding: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    padding-left: 0px;
+    padding-right: 0px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-.sidebar-sticky {
-    position: relative;
+.sidebar .closebtn {
+    position: absolute;
     top: 0;
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+  
+/* The button used to open the sidebar */
+.openbtn {
+    cursor: pointer;
+    background-color: rgb(192, 36, 36);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
+#main {
+    transition: margin-left .5s; /* If you want a transition effect */
+    padding: 20px;
+}
+ 
+a {
+    color: rgb(192, 36, 36);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(58, 23, 23);
+}
+.openbtn:hover {
+    background-color: rgb(58, 23, 23);
 }
 .sidebar .nav-link {
     font-weight: 500;
     color: #333;
 }
-.sidebar .nav-link .feather {
-    margin-right: 4px;
-    color: #999;
-}
+.sidebar .nav-link:hover
 .sidebar .nav-link.active {
     color: rgb(58, 23, 23);
-}
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-    color: inherit;
 }
 .sidebar-heading {
     font-size: .75rem;
@@ -98,8 +127,14 @@ body {
     display: block;
     width: 600px;
     height: 400px;
+    margin-right: auto;
+    margin-left: auto;
 }
   
 th {
     text-align: center;
+}
+
+.form {
+    margin-top: auto;
 }

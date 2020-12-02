@@ -9,7 +9,7 @@
     <link rel = "stylesheet" href = "./Resources/CSS/POS.css">
     <title>Title Town Cards</title>
 </head>
-<body class = "bg-light">
+<body onload = "getEmployeeTLI()" class = "bg-light">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
@@ -24,8 +24,10 @@
                     var urlParams = new URLSearchParams(window.location.search);
                     var managerName = urlParams.get('managerName');
                     var employeeName = urlParams.get('employeeName');
+                    var memberName = urlParams.get('memberName');
                     var managerID = urlParams.get('managerID');
                     var employeeID = urlParams.get('employeeID');
+                    var memberID = urlParams.get('memberID');
                     var TID = urlParams.get('TID');
                     document.write("On duty Manager: " + managerName + "<br>");
                     document.write("On duty Employee: " + employeeName + "<br>");
@@ -40,7 +42,7 @@
                     <form onsubmit="return false" name = "AddToCart" method = "GET">
                         <form onsubmit="return false" name = "AddToCart" method = "GET">
                             <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
-                            <input type="submit" value = "Search" onclick = "getEmployeeProduct('' + document.getElementById('ID').value)"/>
+                            <input type="submit" value = "Search" onclick = "getEmployeeProduct('' + document.getElementById('ID').value + '','' + managerName + '','' + managerID + '','' + employeeName + '','' + employeeID + '','' + TID + '','' + memberName + '','' + memberID + '')"/>
                         </form>
                     </form>
                     <div class = "column" id = "product">

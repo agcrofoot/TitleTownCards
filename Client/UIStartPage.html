@@ -16,28 +16,36 @@
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner text-center">
-                <h3 class="masthead-brand" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Title Town Cards</h3>
+                <h3 class="masthead-brand">Title Town Cards</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="HomePage.html">Home</a>
-                    <a class="nav-link" href="Inventory.html">Inventory</a>
-                    <a class="nav-link" href="ManagerView.html">Manager View</a>
+                    <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
                 </nav>
+                <script>
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var managerID = urlParams.get('managerID');
+                    var employeeID = urlParams.get('employeeID');
+                    var managerName = urlParams.get('managerName');
+                    var employeeName = urlParams.get('employeeName');
+                    document.write("On duty Manager: " + managerName + "<br>");
+                    document.write("On duty Employee: " + employeeName + "<br>");
+                </script>
             </div>
         </header>
 
         <div id= "start">
             <form onsubmit="return false" style="text-align:center" method = "GET">
                 <h1 class="h3 mb-3 font-weight-normal">Enter Your Phone Number or Press Start to Start Checking Out</h1>
-                <input type="tel" name = "memberPhone" id = "MemPhone" placeholder = "Enter Phone"/>
-                <input type="submit" value = "Enter" onclick = "getMember(document.getElementById('MemPhone').value)"/>
+                <input type="number" name = "memberPhone" id = "MemPhone" placeholder = "000-000-0000"/>
+                <input type="submit" value = "Enter" onclick = "getMember('' + document.getElementById('MemPhone').value + '','' + managerID + '','' + managerName + '','' + employeeID + '','' + employeeName + '')"/>
             </form>
             <div class = "text-center">
-                <a href = "CustomerPOS.html" class = "btn" style="background-color: maroon; color: #fff;" role="button">Start</a>
+                <input type="submit" style ="margin-top: 20px;" value = "Start" onclick = "getTransactionID('' + managerID + '','' + managerName + '','' + employeeID + '','' + employeeName + '')"/>
             </div>
         </div>
         <div id = "product">
 
         </div>
+
         
     </div>
 

@@ -10,27 +10,29 @@ namespace API.Models.Save
     {
         public void AddMember(Member value)
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
+            DBConnect db = new DBConnect();
+            bool isOpen = db.OpenConnection();
 
-            string stm = @"INSERT INTO Member(MemberFName, MemberLName, MemberAddress1, MemberAddress2, MemberCity, MemberState, MemberZip, MemberCountry, MemberEmail, MemberDOB, MemberPhone, MemberCardNo)
-                VALUES(@MemberFName, @MemberLName, @MemberAddress1, @MemberAddress2, @MemberCity, @MemberState, @MemberZip, @MemberCountry, @MemberEmail, @MemberDOB, @MemberPhone, @MemberCardNo)";
-            MySqlCommand cmd = new MySqlCommand(stm, con);
-            cmd.Parameters.AddWithValue("@MemberFName",value.memberFName);
-            cmd.Parameters.AddWithValue("@MemberLName",value.memberLName);
-            cmd.Parameters.AddWithValue("@MemberAddress1",value.memberAddress1);
-            cmd.Parameters.AddWithValue("@MemberAddress2",value.memberAddress2);
-            cmd.Parameters.AddWithValue("@MemberCity",value.memberCity);
-            cmd.Parameters.AddWithValue("@MemberState",value.memberState);
-            cmd.Parameters.AddWithValue("@MemberZip",value.memberZip);
-            cmd.Parameters.AddWithValue("@MemberCountry",value.memberCountry);
-            cmd.Parameters.AddWithValue("@MemberEmail",value.memberEmail);
-            cmd.Parameters.AddWithValue("@MemberDOB",value.memberDOB);
-            cmd.Parameters.AddWithValue("@MemberPhone",value.memberPhone);
-            cmd.Parameters.AddWithValue("@MemberCardNo",value.memberCardNo);
-            cmd.Prepare();
-            cmd.ExecuteNonQuery();
+            if(isOpen)
+            {
+                MySqlConnection conn = db.GetConn();
+                MySqlCommand cmd = new MySqlCommand();
+
+                cmd.Connection = conn;
+
+                cmd.CommandText = @"INSERT INTO Member(MemberName, MemberAddress, MemberEmail, MemberDOB, MemberPhone)
+                VALUES(@MemberName, @MemberAddress, @MemberEmail, @MemberDOB, @MemberPhone)";
+                cmd.Parameters.AddWithValue("@MemberName",value.memberName);
+                cmd.Parameters.AddWithValue("@MemberAddress",value.memberAddress);
+                cmd.Parameters.AddWithValue("@MemberEmail",value.memberEmail);
+                cmd.Parameters.AddWithValue("@MemberDOB",value.memberDOB);
+                cmd.Parameters.AddWithValue("@MemberPhone",value.memberPhone);
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+
+                //close connection
+                db.CloseConnection();
+            }
         }
     }
 }

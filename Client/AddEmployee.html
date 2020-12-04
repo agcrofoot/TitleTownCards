@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Resources/CSS/Add.css">
+    <title>Title Town Cards</title>
+</head>
+<body>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script type="text/JavaScript" src="./Resources/Scripts/Index.js"></script>
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner text-center">
+                <h3 class="masthead-brand">Title Town Cards</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
+                </nav>
+            </div>
+        </header>
+        <nav id = "mySidebar" class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <a class="closebtn" href="javascript:void(0)" onclick = "closeNav()">
+                        &times;
+                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ManagerView.html">
+                            <span data-feather="home"></span>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Managers.html">
+                            <span data-feather="shopping-cart"></span>
+                            Managers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Employees.html">
+                            <span data-feather="users"></span>
+                            Employees
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Members.html">
+                            <span data-feather="bar-chart-2"></span>
+                            Members
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Products.html">
+                            <span data-feather="shopping-cart"></span>
+                            Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reports.html">
+                            <span data-feather="bar-chart-2"></span>
+                            Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Orders.html">
+                            <span data-feather="bar-chart-2"></span>
+                            Orders
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav flex-column mb-2">
+                        <p class="text-muted" style ="font-size: small;">
+                            Saved Reports
+                        </p>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Current month
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Last quarter
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span data-feather="file-text"></span>
+                            Year-end sale
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <main role="main" id="main">
+                    <button class="openbtn"  onclick="openNav()">&#9776; Open Sidebar</button>
+                    <form onsubmit = "return false" name = "AddEmployees" class ="text-center" method = "POST">
+                        <div class="form-group">
+                            <label for="employeeName">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="First Last">
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeAddress">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="123 Example St. City, ST 12345">
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeEmail">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="employeePhone">Phone</label>
+                            <input type="text" class="form-control" id="phone" placeholder="000-000-0000">
+                        </div>
+                        <input type = "submit" value = "Add" onclick = "addEmployee('' + document.getElementById('email').value + '')">
+                    </form>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src = "https://code.jquery.com/jquery-latest.js"></script>
+</body> 
+</html>

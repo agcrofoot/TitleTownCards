@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Models.Interfaces.Get;
 using API.Models.Interfaces.GetAll;
-using API.Models.Read;
 using API.Models.Interfaces.Add;
+using API.Models.Interfaces.Update;
+using API.Models.Interfaces.Delete;
 using API.Models.Save;
+using API.Models.Read;
+using API.Models.Update;
+using API.Models.Delete;
 using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
@@ -50,6 +54,8 @@ namespace API.Controllers
         [HttpPut("{employeeID}")]
         public void Put(int employeeID, [FromBody] Employee value)
         {
+            IUpdateEmployees editObject = new UpdateEmployeeData();
+            editObject.EditEmployee(value);
         }
 
         // DELETE: api/ApiWithActions/5
@@ -57,6 +63,8 @@ namespace API.Controllers
         [HttpDelete("{employeeID}")]
         public void Delete(int employeeID)
         {
+            IDeleteEmployee deleteObject = new DeleteEmployeeData();
+            deleteObject.DeleteEmployee(employeeID);
         }
     }
 }

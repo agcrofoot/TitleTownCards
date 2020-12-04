@@ -12,35 +12,53 @@ namespace API.Models.Read
     {
         public List<Employee> GetAllEmployees()
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
+            DBConnect db = new DBConnect();
+            bool isOpen = db.OpenConnection();
 
-            string stm = "SELECT * FROM Employee";
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-
-            using MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Employee> allEmployees = new List<Employee>();
-            while(rdr.Read())
+            if(isOpen)
             {
-                allEmployees.Add(new Employee(){employeeID = rdr.GetInt32(0), employeeName = rdr.GetString(1), employeePhone = rdr.GetString(2), employeeEmail = rdr.GetString(3), employeeAddress = rdr.GetString(4)});
+                MySqlConnection conn = db.GetConn();
+                string stm = "SELECT * FROM Employee";
+                MySqlCommand cmd = new MySqlCommand(stm,conn);
+
+                List<Employee> allEmployees = new List<Employee>();
+                using(var rdr = cmd.ExecuteReader())
+                {
+                    while(rdr.Read())
+                    {
+                        allEmployees.Add(new Employee(){employeeID = rdr.GetInt32(0), employeeName = rdr.GetString(1), employeePhone = rdr.GetString(2), employeeEmail = rdr.GetString(3), employeeAddress = rdr.GetString(4)});
+                    }
+                    db.CloseConnection();
+                    return allEmployees;
+                }
             }
-            return allEmployees;
+            else
+            {
+                return new List<Employee>();
+            }
         }
         public Employee GetEmployee(int employeeID)
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
+            DBConnect db = new DBConnect();
+            bool isOpen = db.OpenConnection();
 
-            string stm = "SELECT * FROM Employee WHERE EmployeeID = @EmployeeID";
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-            cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
-            cmd.Prepare();
-            using MySqlDataReader rdr = cmd.ExecuteReader();
-            
-            rdr.Read();
-            return new Employee(){employeeID = rdr.GetInt32(0), employeeName = rdr.GetString(1), employeePhone = rdr.GetString(2), employeeEmail = rdr.GetString(3), employeeAddress = rdr.GetString(4)};
+            if(isOpen)
+            {
+                MySqlConnection conn = db.GetConn();
+                string stm = "SELECT * FROM Employee WHERE EmployeeID = @EmployeeID";
+                MySqlCommand cmd = new MySqlCommand(stm,conn);
+                cmd.Parameters.AddWithValue("@EmployeeID", employeeID);
+                cmd.Prepare();
+                using var rdr = cmd.ExecuteReader();
+                rdr.Read();
+                Employee employee= new Employee(){employeeID = rdr.GetInt32(0), employeeName = rdr.GetString(1), employeePhone = rdr.GetString(2), employeeEmail = rdr.GetString(3), employeeAddress = rdr.GetString(4)}; 
+                db.CloseConnection();
+                return employee;
+            }
+            else
+            {
+                return new Employee();
+            }
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj": {}
+    "C:\\Users\\birdc\\source\\repos\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj": {
+    "C:\\Users\\birdc\\source\\repos\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\birdc\\source\\repos\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\xampp\\htdocs\\TitleTownCards\\API\\API.csproj",
+        "projectPath": "C:\\Users\\birdc\\source\\repos\\API\\API.csproj",
         "packagesPath": "C:\\Users\\birdc\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\TitleTownCards\\API\\obj\\",
+        "outputPath": "C:\\Users\\birdc\\source\\repos\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\birdc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -38,6 +38,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.4, )"

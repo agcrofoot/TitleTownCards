@@ -6,56 +6,114 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     
-    <link rel = "stylesheet" href = "./Resources/CSS/Index.css">
+    <link rel = "stylesheet" href = "./Resources/CSS/POS.css">
     <title>Title Town Cards</title>
 </head>
-<body onload="getTransactionID()">
+<body onload = "getTLI()" class = "bg-light">
    <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script type = "text/JavaScript" src = "./Resources/Scripts/Index.js"></script>
     <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
         <header class="masthead mb-auto">
             <div class="inner text-center">
-                <h3 class="masthead-brand" style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Title Town Cards</h3>
+                <h3 class="masthead-brand">Title Town Cards</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="HomePage.html">Home</a>
-                    <a class="nav-link" href="Inventory.html">Inventory</a>
-                    <a class="nav-link" href="ManagerView.html">Manager View</a>
+                    <a class="nav-link" href="ManagerEntryPage.html">Manager View</a>
+                </nav> 
+                <nav class="nav nav-masthead" style ="text-align: right;">
+                    <button type = "button" class = "btn btn-secondary" data-toggle="modal" data-target="#helpModal">Help</button>
                 </nav>
+                <script>
+                    var urlParams = new URLSearchParams(window.location.search);
+                    var managerName = urlParams.get('managerName');
+                    var employeeName = urlParams.get('employeeName');
+                    var managerID = urlParams.get('managerID');
+                    var employeeID = urlParams.get('employeeID');
+                    var TID = urlParams.get('TID');
+                    document.write("On duty Manager: " + managerName + "<br>");
+                    document.write("On duty Employee: " + employeeName + "<br>");
+                </script>
             </div>
         </header>
 
-        <div class = "row">
-            <div class = "col-md-8 order-md-1">
-                <h4 class = "mb-3">Enter the ID of the Product</h4>
-                <form onsubmit="return false" name = "AddToCart" method = "GET">
-                    <div class = "row">
-                        <div class = "col-md-6 mb-3">
+        <div class = "container">
+            <div class = "row">
+                <div class = "col-md-8 order-md-1">
+                    <h4 class = "mb-3">Enter the ID of the Product</h4>
+                    <form onsubmit="return false" name = "AddToCart" method = "GET">
+                        <form onsubmit="return false" name = "AddToCart" method = "GET">
                             <input type="number" name = "searchID" id = "ID" placeholder = "Enter Product ID"/>
-                            <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + document.getElementById('tID').innerHTML +'')"/>
-                        </div>
-                    </div>
-                </form>
-                <div class = "column" id = "product">
+                            <input type="submit" value = "Search" onclick = "getProduct('' + document.getElementById('ID').value + '','' + managerName + '','' + managerID + '','' + employeeName + '','' + employeeID + '','' + TID + '')"/>
+                        </form>
+                    </form>
+                    <div class = "column" id = "product">
 
-                </div> 
-                <div id = "tID" style = "display: none;">
-
+                    </div> 
                 </div>
-            </div>
-            <div class = "col-md-4 order-md-2 mb-4">
-                <h4 class = "d-flex justify-content-between align-items-center mb-3">
-                    <span class = "text-muted">Cart</span>
-                    <span class = "badge badge-secondary badge-pill" id = "noOfItems">"getNoOfItems()"</span>
-                </h4>
-                <div id = "cart">
+                <div class = "col-md-4 order-md-2 mb-4">
+                    <h4 class = "d-flex justify-content-between align-items-center mb-3">
+                        <span class = "text-muted">Cart</span>
+                    </h4>
+                    <div id = "cart">
 
+                    </div>
+                    <div id = "transaction" style="display: none;">
+
+                    </div>
                 </div>
             </div>
         </div>
-        
     </div>
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Enter Employee ID</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id = "help section">
+                    <form onsubmit = "return false" class="form-signin">
+                        <label for="inputID" class="sr-only">ID</label>
+                        <input type="password" id="inputID" class="form-control" placeholder="ID" required>
+                        <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="getCart('' + TID + '')">Continue</button>
+                    </form>
+                    <div class = "modal-dialog modal-dialog-scrollable" id = "delete">
 
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getCart(TID){
+            const getCartApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";
+            
+            fetch(getCartApiUrl).then(function(response){
+                console.log(response);
+                return response.json();
+            }).then(function(json){
+                var html = "<ul>";
+                json.forEach((lineItem) => {
+                    if(TID == lineItem.transactionID)
+                    {
+                        html += "<li><span>" + lineItem.productName + ": $" + lineItem.productPrice + "</span>" + 
+                        " <button onclick = \"deleteTLI(" + lineItem.productID + ")\">Delete</button>";
+                    }
+                })
+                html += "</ul>";
+                document.getElementById("delete").innerHTML = html;
+            }).catch(function(error){
+                console.log(error);
+                var html = "<p>\"That item could not be found in our system. Please enter a valid ID.\"</p>";
+                document.getElementById("delete").innerHTML = html;
+            });
+        }
+    </script>
     <!-- Latest compiled and minified JavaScript -->
     <script src = "https://code.jquery.com/jquery-latest.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

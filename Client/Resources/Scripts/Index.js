@@ -2,109 +2,211 @@
 
 //Retrieves all products and their information
 function getProducts(){
-    const getAllProductsApiUrl = "https://localhost/TitleTownCards/Client/Products";
+    const getAllProductsApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products";
     fetch(getAllProductsApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){ 
-        let html = "<div class = \"table-responsive\">";
-        html +=         "<table class = \"table table-striped\">";
-        html +=             "<thead>" +
-                                "<tr>" +
-                                    "<th scope = \"col\">ProductID</th>" +
-                                    "<th scope = \"col\">Name</th>" +
-                                    "<th scope = \"col\">Price</th>" +
-                                    "<th scope = \"col\">Type</th>" +
-                                    "<th scope = \"col\">Status</th>" +
-                                    "<th scope = \"col\">Discount</th>" +
-                                    "<th scope = \"col\">Date Ordered</th>" +
-                                    "<th scope = \"col\">Date Added</th>" +
-                                    "<th scope = \"col\">Manager</th>" +
-                                    "<th scope = \"col\">Employee</th>" +
-                                "</tr>" +
-                            "</thead>";
+        let html = '';
         json.forEach((product)=>{
-            html +=         "<tbody>" +
-                                "<tr>"+
-                                    "<th scope =\"row\">" + product.productID + "</th>" +
-                                    "<td>" + product.productName + "</td>" +
-                                    "<td>" + product.productPrice + "</td>" +
-                                    "<td>" + product.productType + "</td>" +
-                                    "<td>" + product.productStatus + "</td>" +
-                                    "<td>" + product.productDiscount + "</td>" +
-                                    "<td>" + product.dateOrdered + "</td>" +
-                                    "<td>" + product.dateAddedToInv + "</td>" +
-                                    "<td>" + product.managerName + "</td>" +
-                                    "<td>" + product.employeeName + "</td>" +
-                                "</tr>"
+            html +=     "<tr>"+
+                            "<th scope =\"row\">" + product.productID + "</th>" +
+                            "<td id = \"Name\">" + product.productName + "</td>" +
+                            "<td> $" + product.productPrice + "</td>" +
+                            "<td>" + product.productType + "</td>" +
+                            "<td>" + product.productStatus + "</td>" +
+                            "<td> $" + product.productDiscount + "</td>" +
+                            "<td>" + product.dateOrdered + "</td>" +
+                            "<td>" + product.dateAddedToInv + "</td>" +
+                            "<td>" + product.managerName + "</td>" +
+                            "<td>" + product.employeeName + "</td>" +
+                            "<td><button onclick = \"ShowAndHide(" + product.productID + ", " + " '" + product.productName + "' " + ", " + product.productPrice + "," + product.productDiscount + ")\">Edit</button></td>" +
+                        "</tr>";
         });
-        html +=             "</tbody>" +
-                        "</table>" +
-                    "</div>";
         document.getElementById("allProducts").innerHTML = html;
     }).catch(function(error){
         console.log(error);
     });
 }
 
+function ShowAndHide(productID, productName, productPrice, productDiscount){
+    console.log(productID + "show and hide");
+    var x = document.getElementById('edit');
+    if (x.style.display == 'none')
+    {
+        x.style.display = 'block';
+    }
+    else
+    {
+        x.style.display = 'none';
+    }
+
+    var html = "<form onsubmit= \"ShowAndHide(" + productID + ", " + " '" + productName + "' " + ", " + productPrice + ", " + productDiscount + ")\" method = \"PUT\">" +
+    "<div class=\"form-group\">"+
+        "<label for=\"productName\">Product Name</label>"+
+        "<input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"" + productName + "\">"+
+        "<input type = \"submit\" value = \"Save\" onclick = \"editProductName(" + productID + ")\">"+
+    "</div>"+
+    "<div class=\"form-group\">"+
+        "<label for=\"productPrice\">Price</label>"+
+        "<input type=\"text\" class=\"form-control\" id=\"price\" placeholder=\"$" + productPrice + "\">"+
+        "<input type = \"button\" value = \"Save\" onclick = \"editProductPrice(" + productID + ")\">"+
+    "</div>"+
+    "<div class=\"form-group\">"+
+        "<label for=\"productDiscount\">Discount</label>"+
+        "<input type=\"text\" class=\"form-control\" id=\"discount\" placeholder=\"$" + productDiscount + "\">"+
+        "<input type=\"button\" value = \"Save\" onclick = \"editProductDiscount(" + productID + ")\">"+
+    "</div>"+
+    "</form>";
+    document.getElementById("edit").innerHTML = html;
+}
+
 //Retrieves all transactions and their information
 function getTransactions(){
-    const getAllransactionsApiUrl = "https://localhost:5001/API/Transactions";
-    fetch(getAllransactionsApiUrl).then(function(response){
+    const getAllTransactionsApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
+    fetch(getAllTransactionsApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        let html =  "<div class = \"table-responsive\">";
-        html +=         "<table class = \"table table-striped\">";
-        html +=             "<thead>" +
-                                "<tr>" +
-                                    "<th scope = \"col\">Transaction ID</th>" +
-                                    "<th scope = \"col\">Date of Transaction</th>" +
-                                    "<th scope = \"col\">Total</th>" +
-                                    "<th scope = \"col\">Manager ID</th>" +
-                                    "<th scope = \"col\">Manager</th>" +
-                                    "<th scope = \"col\">Employee ID</th>" +
-                                    "<th scope = \"col\">Employee</th>" +
-                                    "<th scope = \"col\">Member ID</th>" +
-                                "</tr>" +
-                            "</thead>";
+        let html =  '';
         json.forEach((transaction)=>{
-            html +=         "<tbody>" +
-                                "<tr>"+
-                                    "<th scope =\"row\">" + transaction.transactionID + "</th>" +
-                                    "<td>" + transaction.transactionDate + "</td>" +
-                                    "<td>" + transaction.transactionCost + "</td>" +
-                                    "<td>" + transaction.managerID + "</td>" +
-                                    "<td>" + transaction.managerName + "</td>" +
-                                    "<td>" + transaction.employeeID + "</td>" +
-                                    "<td>" + transaction.employeeName + "</td>" +
-                                    "<td>" + transaction.memberID + "</td>" +
-                                "</tr>"
+            html +=         "<tr>"+
+                                "<th scope =\"row\">" + transaction.transactionID + "</th>" +
+                                "<td>" + transaction.transactionDate + "</td>" +
+                                "<td>" + transaction.transactionCost + "</td>" +
+                                "<td>" + transaction.managerID + "</td>" +
+                                "<td>" + transaction.managerName + "</td>" +
+                                "<td>" + transaction.employeeID + "</td>" +
+                                "<td>" + transaction.employeeName + "</td>" +
+                                "<td>" + transaction.memberID + "</td>" +
+                            "</tr>"
         });
-        html +=             "</tbody>" +
-                        "</table>" +
-                    "</div>";
         document.getElementById("transactions").innerHTML = html;
     }).catch(function(error){
         console.log(error);
     });
 }
 
+//Retrieves all members and their information
+function getMembers(){
+    const getAllMembersApiUrl = "https://title-town-cards-api.herokuapp.com/API/Members";
+    fetch(getAllMembersApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){ 
+        let html = '';
+        json.forEach((member)=>{
+            html +=     "<tr>"+
+                            "<th scope =\"row\">" + member.memberID + "</th>" +
+                            "<td>" + member.memberName + "</td>" +
+                            "<td>" + member.memberAddress + "</td>" +
+                            "<td>" + member.memberEmail + "</td>" +
+                            "<td>" + member.memberDOB + "</td>" +
+                            "<td>" + member.memberPhone + "</td>" +
+                        "</tr>"
+        });
+        document.getElementById("allMembers").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Retrieves all managers and their information
+function getManagers(){
+    const getAllManagersApiUrl = "https://title-town-cards-api.herokuapp.com/API/Managers";
+    fetch(getAllManagersApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){ 
+        let html = '';
+        json.forEach((manager)=>{
+            html +=     "<tr>"+
+                            "<th scope =\"row\">" + manager.managerID + "</th>" +
+                            "<td>" + manager.managerName + "</td>" +
+                            "<td>" + manager.managerPhone + "</td>" +
+                            "<td>" + manager.managerEmail + "</td>" +
+                            "<td>" + manager.managerAddress + "</td>" +
+                        "</tr>"
+        });
+        document.getElementById("allManagers").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Retrieves all employees and their information
+function getEmployees(){
+    const getAllEmployeesApiUrl = "https://title-town-cards-api.herokuapp.com/API/Employees";
+    fetch(getAllEmployeesApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){ 
+        let html = '';
+        json.forEach((employee)=>{
+            html +=     "<tr>"+
+                            "<th scope =\"row\">" + employee.employeeID + "</th>" +
+                            "<td>" + employee.employeeName + "</td>" +
+                            "<td>" + employee.employeePhone + "</td>" +
+                            "<td>" + employee.employeeEmail + "</td>" +
+                            "<td>" + employee.employeeAddress + "</td>" +
+                        "</tr>"
+        });
+        document.getElementById("allEmployees").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
 //Retrieves a single product and its information
-function getProduct(ID, tID){
-    const getProductApiUrl = "https://localhost:5001/API/Products/" + ID;
-    fetch(getProductApiUrl).then(function(response){
+function getProduct(ID, managerName, managerID, employeeName, employeeID, TID, memberName, memberID){
+    const getProductApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products/" + ID;
+   fetch(getProductApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        console.log(tID);
         var html = "<div class = \"container\">";
         html += "<div><p><b>ID: </b></p><p>" + json.productID+ "</p>";
         html += "<p><b>Name: </b></p><p id = \"ProductName\">" + json.productName + "</p>";
         html += "<p><b>Price: </b></p><p>" +  json.productPrice + "</p>";
-        html += " <var id = \"ProductType\" style = \"display: none;\">" + json.productType + "</var>";
-        html += " <var id = \"ProductDiscount\" style = \"display: none;\">" + json.productDiscount + "</var>";
-        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTLI(" + json.productID + ", " + json.productPrice + ", " + json.productDiscount + "," + tID + ")\"/>";
+        html += "<var id = \"ProductType\" style = \"display: none;\">" + json.productType + "</var>";
+        html += "<var id = \"ProductDiscount\" style = \"display: none;\">" + json.productDiscount + "</var>";
+        html += "<var id = \"TID\" style = \"display: none;\">" + TID + "</var>";
+        html += "<var id = \"ManagerName\" style = \"display: none;\">" + managerName + "</var>";
+        html += "<var id = \"ManagerID\" style = \"display: none;\">" + managerID + "</var>";
+        html += "<var id = \"EmployeeName\" style = \"display: none;\">" + employeeName + "</var>";
+        html += "<var id = \"EmployeeID\" style = \"display: none;\">" + employeeID + "</var>";
+        html += "<var id = \"MemberName\" style = \"display: none;\">" + memberName + "</var>";
+        html += "<var id = \"MemberID\" style = \"display: none;\">" + memberID + "</var>";
+        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addTLI(" + json.productID + ", " + json.productPrice + ", " + json.productDiscount + ", " + managerID + ", " + employeeID + ", " + memberID + ")\"/>";
+        html += "</div>";
+        document.getElementById("product").innerHTML = html;
+    }).catch(function(error){
+        console.log(error);
+        var html = "<p>\"That item could not be found in our system. Please enter a valid ID.\"</p>";
+        document.getElementById("product").innerHTML = html;
+    });
+}
+
+function getEmployeeProduct(ID, managerName, managerID, employeeName, employeeID, TID, memberName, memberID){
+    const getProductApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products/" + ID;
+   fetch(getProductApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        var html = "<div class = \"container\">";
+        html += "<div><p><b>ID: </b></p><p>" + json.productID+ "</p>";
+        html += "<p><b>Name: </b></p><p id = \"ProductName\">" + json.productName + "</p>";
+        html += "<p><b>Price: </b></p><p>" +  json.productPrice + "</p>";
+        html += "<var id = \"ProductType\" style = \"display: none;\">" + json.productType + "</var>";
+        html += "<var id = \"ProductDiscount\" style = \"display: none;\">" + json.productDiscount + "</var>";
+        html += "<var id = \"TID\" style = \"display: none;\">" + TID + "</var>";
+        html += "<var id = \"ManagerName\" style = \"display: none;\">" + managerName + "</var>";
+        html += "<var id = \"ManagerID\" style = \"display: none;\">" + managerID + "</var>";
+        html += "<var id = \"EmployeeName\" style = \"display: none;\">" + employeeName + "</var>";
+        html += "<var id = \"EmployeeID\" style = \"display: none;\">" + employeeID + "</var>";
+        html += "<var id = \"MemberName\" style = \"display: none;\">" + memberName + "</var>";
+        html += "<var id = \"MemberID\" style = \"display: none;\">" + memberID + "</var>";
+        html += "<input type=\"submit\" value = \"Add to Cart\" onclick = \"addEmployeeTLI(" + json.productID + ", " + json.productPrice + ", " + json.productDiscount + ", " + managerID + ", " + employeeID + ", " + memberID + ")\"/>";
         html += "</div>";
         document.getElementById("product").innerHTML = html;
     }).catch(function(error){
@@ -115,9 +217,9 @@ function getProduct(ID, tID){
 }
 
 //Checks if the phone number entered is in the system then adds the corresponding ID to MemberTransaction
-function getMember(memberPhone){
-    const getMemberApiUrl = "https://localhost:5001/API/Members";
-
+function getMember(memberPhone, managerID, managerName, employeeID, employeeName){
+    const getMemberApiUrl = "https://title-town-cards-api.herokuapp.com/API/Members";
+    console.log(getMemberApiUrl);
     fetch(getMemberApiUrl).then(function(response){
         console.log(response);
         return response.json();
@@ -128,8 +230,7 @@ function getMember(memberPhone){
             if(memberPhone == member.memberPhone)
             {
                 console.log("went through");
-                addTransaction(member.memberID);
-                window.location.href = "MemberPOS.html";
+                getMemTransactionID(managerID, managerName, employeeID, employeeName, member.memberID, member.memberName);
             }
             else
             {
@@ -141,23 +242,59 @@ function getMember(memberPhone){
     });
 }
 
-//Retrieves an individual Manager Name from an ID
+function getEmpMember(memberPhone, managerID, managerName, employeeID, employeeName){
+    const getEmpMemberApiUrl = "https://title-town-cards-api.herokuapp.com/API/Members";
+    console.log(getEmpMemberApiUrl);
+    fetch(getEmpMemberApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        json.forEach((member)=>{
+            console.log(member.memberPhone);
+            console.log(memberPhone);
+            if(memberPhone == member.memberPhone)
+            {
+                console.log("went through");
+                getMemEmpTransactionID(managerID, managerName, employeeID, employeeName, member.memberID, member.memberName);
+            }
+            else
+            {
+                console.log("didn't go through");
+            }
+        });
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Retrieves an individual Manager from an ID
 function getManager(ID){
-    const getManagerApiUrl = "https://localhost:5001/API/Managers/" + ID;
+    const getManagerApiUrl = "https://title-town-cards-api.herokuapp.com/API/Managers";
+    console.log(getManagerApiUrl);
     fetch(getManagerApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        if(ID == json.managerID)
-        {
-            console.log("went through");
-            var html = " <var id = \"ManagerName\" style = \"display: none;\">" + json.managerName + "</var>";
-            document.getElementById("karen").innerHTML = html;
-        }
-        else
-        {
-            console.log("didn't go through");
-        }
+        var html = '';
+        json.forEach((manager)=>{
+            console.log(manager.managerID);
+            console.log(ID);
+            if(ID == manager.managerID)
+            {
+                console.log("went through");
+                console.log(manager.managerName);
+                html += "<var id = \"ManagerID\">" + manager.managerID + "</var>" + 
+                        "<var id = \"ManagerName\">" + manager.managerName + "</var>" + 
+                        "<var id = \"ManagerPhone\">" + manager.managerPhone + "</var>" + 
+                        "<var id = \"ManagerEmail\">" + manager.managerEmail + "</var>" + 
+                        "<var id = \"ManagerAddress\">" + manager.managerAddress + "</var>";
+            }
+            else
+            {
+                console.log("didn't go through");
+            }
+        });
+        document.getElementById("karen").innerHTML = html;
     }).catch(function(error){
         console.log(error);
     });
@@ -165,29 +302,40 @@ function getManager(ID){
 
 //Retrieves an individual Employee Name from an ID
 function getEmployee(ID){
-    const getEmployeeApiUrl = "https://localhost/TitleTownCards/Client/Employee/" + ID;
+    const getEmployeeApiUrl = "https://title-town-cards-api.herokuapp.com/API/Employees";
+    console.log(getEmployeeApiUrl);
     fetch(getEmployeeApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        if(ID == json.employeeID)
-        {
-            console.log("went through");
-            var html = " <var id = \"EmployeeName\" style = \"display: none;\">" + json.employeeName + "</var>";
-            document.getElementById("emp").innerHTML = html;
-        }
-        else
-        {
-            console.log("didn't go through");
-        }
+        var html = '';
+        json.forEach((employee)=>{
+            console.log(employee.employeeID);
+            console.log(ID);
+            if(ID == employee.employeeID)
+            {
+                console.log("went through");
+                console.log(employee.employeeName);
+                html += "<var id = \"EmployeeID\">" + employee.employeeID + "</var>" + 
+                        "<var id = \"EmployeeName\">" + employee.employeeName + "</var>" + 
+                        "<var id = \"EmployeePhone\">" + employee.employeePhone + "</var>" + 
+                        "<var id = \"EmployeeEmail\">" + employee.employeeEmail + "</var>" + 
+                        "<var id = \"EmployeeAddress\">" + employee.employeeAddress + "</var>";
+            }
+            else
+            {
+                console.log("didn't go through");
+            }
+        });
+        document.getElementById("emp").innerHTML = html;
     }).catch(function(error){
         console.log(error);
     });
 }
 
 //Generates a Transaction Number
-function getTransactionID(){
-    const transactionApiUrl = "https://localhost:5001/API/Transactions";
+function getTransactionID(managerID, managerName, employeeID, employeeName){
+    const transactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
     var TransactionID = 1;
     fetch(transactionApiUrl).then(function(response){
         console.log(response);
@@ -201,43 +349,150 @@ function getTransactionID(){
                 TransactionID++;
                 console.log(TransactionID);
             }
-            document.getElementById('tID').innerHTML = TransactionID;
         });
+        transactionCost = 0;
+        sessionStorage.setItem("TID", TransactionID);
+        sessionStorage.setItem("managerName", managerName);
+        sessionStorage.setItem("managerID", managerID);
+        sessionStorage.setItem("employeeName", employeeName);
+        sessionStorage.setItem("employeeID", employeeID);
+        addTransaction(TransactionID, transactionCost, managerID, managerName, employeeID, employeeName);
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Generates a member transaction ID
+function getMemTransactionID(managerID, managerName, employeeID, employeeName, memberID, memberName){
+    const memTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
+    var TransactionID = 1;
+    fetch(memTransactionApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        json.forEach((transaction)=>{
+            console.log(transaction.transactionID);
+            console.log(TransactionID);
+            while(TransactionID == transaction.transactionID)
+            {
+                TransactionID++;
+                console.log(TransactionID);
+            }
+        });
+        transactionCost = 0;
+        sessionStorage.setItem("TID", TransactionID);
+        sessionStorage.setItem("managerName", managerName);
+        sessionStorage.setItem("managerID", managerID);
+        sessionStorage.setItem("employeeName", employeeName);
+        sessionStorage.setItem("employeeID", employeeID);
+        sessionStorage.setItem("memberName", memberName);
+        sessionStorage.setItem("memberID", memberID);
+        addMemTransaction(TransactionID, transactionCost, managerID, managerName, employeeID, employeeName, memberID, memberName);
+
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+function getEmpTransactionID(managerID, managerName, employeeID, employeeName){
+    const empTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
+    var TransactionID = 1;
+    fetch(empTransactionApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        json.forEach((transaction)=>{
+            console.log(transaction.transactionID);
+            console.log(TransactionID);
+            while(TransactionID == transaction.transactionID)
+            {
+                TransactionID++;
+                console.log(TransactionID);
+            }
+        });
+        transactionCost = 0;
+        sessionStorage.setItem("TID", TransactionID);
+        sessionStorage.setItem("managerName", managerName);
+        sessionStorage.setItem("managerID", managerID);
+        sessionStorage.setItem("employeeName", employeeName);
+        sessionStorage.setItem("employeeID", employeeID);
+        addEmpTransaction(TransactionID, transactionCost, managerID, managerName, employeeID, employeeName);
+    }).catch(function(error){
+        console.log(error);
+    });
+}
+
+//Generates a member transaction ID
+function getMemEmpTransactionID(managerID, managerName, employeeID, employeeName, memberID, memberName){
+    const memEmpTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
+    var TransactionID = 1;
+    fetch(memEmpTransactionApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        json.forEach((transaction)=>{
+            console.log(transaction.transactionID);
+            console.log(TransactionID);
+            while(TransactionID == transaction.transactionID)
+            {
+                TransactionID++;
+                console.log(TransactionID);
+            }
+        });
+        transactionCost = 0;
+        sessionStorage.setItem("TID", TransactionID);
+        sessionStorage.setItem("managerName", managerName);
+        sessionStorage.setItem("managerID", managerID);
+        sessionStorage.setItem("employeeName", employeeName);
+        sessionStorage.setItem("employeeID", employeeID);
+        sessionStorage.setItem("memberName", memberName);
+        sessionStorage.setItem("memberID", memberID);
+        addEmpTransaction(TransactionID, transactionCost, managerID, managerName, employeeID, employeeName, memberID, memberName);
+
     }).catch(function(error){
         console.log(error);
     });
 }
 
 //Shows transaction line items in the person's cart
-function getTLI(tID){
-    const getTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
+function getTLI(){
+    const getTLIApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";
     fetch(getTLIApiUrl).then(function(response){
         console.log(response);
         return response.json();
     }).then(function(json){
-        var html =  "<ul class=\"list-group mb-3\">";
+        var html =  "<ul class=\"list-group mb-3\" style = \"max-width: 300px; justify-content: left;\">";
+        var discount = 0;
+        var Total = 0;
+        var Price = 0;
+        var TID = sessionStorage.getItem("TID");
         json.forEach((lineItem) => {
-            console.log(tID);
+            console.log(TID);
             console.log(lineItem.transactionID);
-            if(tID == lineItem.transactionID)
+            if(TID == lineItem.transactionID)
             {
+                Price = lineItem.productPrice * (1 - lineItem.productDiscount);
                 html += "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
                             "<div>" +
                                 "<h6 class=\"my-0\">" + lineItem.productName + "</h6>" +
                             " </div>" +
-                            " <span class = \"text-muted\"> $" + lineItem.productPrice + "</span>" + 
+                            " <span class = \"text-muted\"> $" + Price + "</span>" + 
                         "</li>"
+                discount += lineItem.productDiscount;
+                Total += Price;
             }
         })
         html +=         "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
                             "<div>" +
                                 "<h6 class = \"my-0\">" + 'Discount' + "</h6>" +
                             "</div>" + 
-                            "<span> $" + lineItem.productDiscount + "</span>" +
-                        "</li>" + 
+                            "<span> $" + discount + "</span>" +
+                        "</li>" +
                         "<li class = \"list-group-item d-flex justify-content-between\">" +
                             "<span>" + 'Total' + "</span>" +
-                            "<strong> $" + + "</strong>" +
+                            "<strong> $" + Total + "</strong>" +
+                            "<hr class=\"mb-4\">" +
+                            "<button class=\"btn btn-secondary btn-block\" type=\"submit\" onclick = \"goToCheckOut(" + Total + ")\">" + 'Continue to checkout' + "</button>" +
                         "</li>" +
                     "</ul>";
         document.getElementById("cart").innerHTML = html;     
@@ -249,17 +504,92 @@ function getTLI(tID){
 
 }
 
+function getEmployeeTLI(){
+    const getTLIApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";
+    fetch(getTLIApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        var html =  "<ul class=\"list-group mb-3\" style = \"max-width: 300px; justify-content: left;\">";
+        var discount = 0;
+        var Total = 0;
+        var TID = sessionStorage.getItem("TID");
+        json.forEach((lineItem) => {
+            console.log(TID);
+            console.log(lineItem.transactionID);
+            if(TID == lineItem.transactionID)
+            {
+                html += "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
+                            "<div>" +
+                                "<h6 class=\"my-0\">" + lineItem.productName + "</h6>" +
+                            " </div>" +
+                            " <span class = \"text-muted\"> $" + lineItem.productPrice + "</span>" + 
+                            " <button onclick = \"deleteTLI(" + lineItem.productID + ")\">Delete</button>" +
+                        "</li>"
+                discount += lineItem.productDiscount;
+                Total += lineItem.productPrice;
+            }
+        })
+        html +=         "<li class=\"list-group-item d-flex justify-content-between lh-condensed\">" +
+                            "<div>" +
+                                "<h6 class = \"my-0\">" + 'Discount' + "</h6>" +
+                            "</div>" + 
+                            "<span> $" + discount + "</span>" +
+                        "</li>" +
+                        "<li class = \"list-group-item d-flex justify-content-between\">" +
+                            "<span>" + 'Total' + "</span>" +
+                            "<strong> $" + Total + "</strong>" +
+                            "<hr class=\"mb-4\">" +
+                            "<button class=\"btn btn-secondary btn-block\" type=\"submit\" onclick = \"goToEmployeeCheckOut(" + Total + ")\">" + 'Continue to checkout' + "</button>" +
+                        "</li>" +
+                    "</ul>";
+        document.getElementById("cart").innerHTML = html;     
+    }).catch(function(error){
+        console.log(error);
+        var html = "<p>\"That item could not be found in our system. Please enter a valid ID.\"</p>";
+        document.getElementById("product").innerHTML = html;
+    });
+
+}
+
+//Goes to Checkout
+function goToCheckOut(Total){
+    console.log("here");
+    var TID = sessionStorage.getItem("TID");
+    var managerName = sessionStorage.getItem("managerName");
+    var managerID = sessionStorage.getItem("managerID");
+    var employeeName = sessionStorage.getItem("employeeName");
+    var employeeID = sessionStorage.getItem("employeeID");
+    var memberName = sessionStorage.getItem("memberName");
+    var memberID = sessionStorage.getItem("memberID");
+    var para = "?TID=" + TID + "&managerName=" + managerName + "&managerID=" + managerID + "&employeeName=" + employeeName + "&employeeID=" + employeeID + "&memberID=" + memberID + "&memberName=" + memberName + "&Total=" + Total;
+    window.location.href = "CheckOut.html" + para;
+}
+
+function goToEmployeeCheckOut(Total){
+    console.log("here");
+    var TID = sessionStorage.getItem("TID");
+    var managerName = sessionStorage.getItem("managerName");
+    var managerID = sessionStorage.getItem("managerID");
+    var employeeName = sessionStorage.getItem("employeeName");
+    var employeeID = sessionStorage.getItem("employeeID");
+    var memberName = sessionStorage.getItem("memberName");
+    var memberID = sessionStorage.getItem("memberID");
+    var para = "?TID=" + TID + "&managerName=" + managerName + "&managerID=" + managerID + "&employeeName=" + employeeName + "&employeeID=" + employeeID + "&memberID=" + memberID + "&memberName=" + memberName + "&Total=" + Total;
+    window.location.href = "EmployeeCheckOut.html" + para;
+}
+
 //POSTs
 
 //Adds to the Transaction Line Item Table
-function addTLI(productID, productPrice, productDiscount, tID){
-    const addTLIApiUrl = "https://localhost:5001/API/TransactionLineItems";
-    const TID = tID;    
+function addTLI(productID, productPrice, productDiscount){
+    const addTLIApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";    
     const ID = productID;
     const Name = document.getElementById("ProductName").innerHTML;
     const Price = productPrice;
     const Type = document.getElementById("ProductType").innerHTML;
     const Discount = productDiscount;
+    const TID = document.getElementById("TID").innerHTML;
     console.log(TID);  
     
     fetch(addTLIApiUrl, {
@@ -269,23 +599,94 @@ function addTLI(productID, productPrice, productDiscount, tID){
             "Content-Type": 'application/json'
         },
         body: JSON.stringify({
-            transactionID: TID,
-            productID: ID,
+            transactionID: parseInt(TID),
+            productID: parseInt(ID),
             productName: Name,
-            productPrice: Price,
+            productPrice: parseFloat(Price),
             productType: Type,
-            productDiscount: Discount
+            productDiscount: parseFloat(Discount)
         })
     }).then((response)=>{
         console.log(response);
         document.forms['AddToCart'].reset();
-        getTLI(tID);
+        getTLI();
     })
 }
-//Starts a blank transaction
-function addTransaction(memberID){
-    const addTransactionApiUrl = "https://localhost:5001/API/Transactions";
+
+function addEmployeeTLI(productID, productPrice, productDiscount){
+    const addTLIApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";    
+    const ID = productID;
+    const Name = document.getElementById("ProductName").innerHTML;
+    const Price = productPrice;
+    const Type = document.getElementById("ProductType").innerHTML;
+    const Discount = productDiscount;
+    const TID = document.getElementById("TID").innerHTML;
+    console.log(TID);  
+    
+    fetch(addTLIApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            transactionID: parseInt(TID),
+            productID: parseInt(ID),
+            productName: Name,
+            productPrice: parseFloat(Price),
+            productType: Type,
+            productDiscount: parseFloat(Discount)
+        })
+    }).then((response)=>{
+        console.log(response);
+        document.forms['AddToCart'].reset();
+        getEmployeeTLI();
+    })
+}
+//Starts a transaction
+function addMemTransaction(TID, transactionCost, managerID, managerName, employeeID, employeeName, memberID, memberName){
+    const addMemTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
+    const TransactionID = TID;
+    const TransactionCost = transactionCost;
+    const ManagerID = managerID;
+    const ManagerName = managerName;
+    const EmployeeID = employeeID;
+    const EmployeeName = employeeName;
     const MemberID = memberID;
+
+
+    fetch(addMemTransactionApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            transactionID: TransactionID,
+            transactionCost: parseFloat(TransactionCost),
+            managerID: parseInt(ManagerID),
+            managerName: ManagerName,
+            employeeID: parseInt(EmployeeID),
+            employeeName: EmployeeName,
+            memberID: parseInt(MemberID)
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+        var para = "?member=" + memberName + "&memberID=" + memberID + "&managerName=" + managerName + "&managerID=" + managerID + "&employeeName=" + employeeName + "&employeeID=" + employeeID + "&TID=" + TID;
+        window.location.href = "MemberPOS.html" + para;
+    })
+}
+
+function addTransaction(TID, transactionCost, managerID, managerName, employeeID, employeeName){
+    const addTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
+    const TransactionID = TID;
+    const TransactionCost = transactionCost;
+    const ManagerID = managerID;
+    const ManagerName = managerName;
+    const EmployeeID = employeeID;
+    const EmployeeName = employeeName;
+
 
     fetch(addTransactionApiUrl, {
         method: "POST",
@@ -294,15 +695,58 @@ function addTransaction(memberID){
             "Content-Type": 'application/json'
         },
         body: JSON.stringify({
-            memberID: MemberID
+            transactionID: TransactionID,
+            transactionCost: parseFloat(TransactionCost),
+            managerID: parseFloat(ManagerID),
+            managerName: ManagerName,
+            employeeID: parseFloat(EmployeeID),
+            employeeName: EmployeeName
         })
-    }).then((response)=>{
+    })
+    .then((response)=>{
         console.log(response);
+        var para = "?managerName=" + managerName + "&managerID=" + managerID + "&employeeName=" + employeeName + "&employeeID=" + employeeID + "&TID=" + TID;
+        window.location.href = "CustomerPOS.html" + para;
     })
 }
+
+function addEmpTransaction(TID, transactionCost, managerID, managerName, employeeID, employeeName, memberID, memberName){
+    const addEmpTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions";
+    const TransactionID = TID;
+    const TransactionCost = transactionCost;
+    const ManagerID = managerID;
+    const ManagerName = managerName;
+    const EmployeeID = employeeID;
+    const EmployeeName = employeeName;
+    const MemberID = memberID;
+
+
+    fetch(addEmpTransactionApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            transactionID: TransactionID,
+            transactionCost: parseFloat(TransactionCost),
+            managerID: parseInt(ManagerID),
+            managerName: ManagerName,
+            employeeID: parseInt(EmployeeID),
+            employeeName: EmployeeName,
+            memberID: parseInt(MemberID)
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+        var para = "?managerName=" + managerName + "&managerID=" + managerID + "&employeeName=" + employeeName + "&employeeID=" + employeeID + "&TID=" + TID + "&memberName=" + memberName + "&memberID=" + memberID;
+        window.location.href = "EmployeePOS.html" + para;
+    })
+}
+
 //Adds Product to Inventory
 function addProduct(price, mgrID, manager, empID, employee){
-    const addProductApiUrl = "https://localhost:5001/API/Products";
+    const addProductApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products";
     const Name = document.getElementById("name").value;
     const Price = price;
     const Type = document.getElementById("type").value;
@@ -333,4 +777,270 @@ function addProduct(price, mgrID, manager, empID, employee){
         console.log(response);
         document.forms['AddProducts'].reset();
     })
+}
+
+//Adds Manager
+function addManager(email){
+    const addManagerApiUrl = "https://title-town-cards-api.herokuapp.com/API/Managers";
+    const Name = document.getElementById("name").value;
+    const Phone = document.getElementById("phone").value;
+    const Email = email;
+    const Address = document.getElementById("address").value;
+
+    fetch(addManagerApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            managerName: Name,
+            managerPhone: Phone,
+            managerEmail: Email,
+            managerAddress: Address
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+        document.forms['AddManagers'].reset();
+    })
+}
+
+//Adds Employee
+function addEmployee(email){
+    const addEmployeeApiUrl = "https://title-town-cards-api.herokuapp.com/API/Employees";
+    const Name = document.getElementById("name").value;
+    const Phone = document.getElementById("phone").value;
+    const Email = email;
+    const Address = document.getElementById("address").value;
+
+    fetch(addEmployeeApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            employeeName: Name,
+            employeePhone: Phone,
+            employeeEmail: Email,
+            employeeAddress: Address
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+        document.forms['AddEmployees'].reset();
+    })
+}
+
+//Adds Member
+function addMember(email){
+    const addMemberApiUrl = "https://title-town-cards-api.herokuapp.com/API/Members";
+    const Name = document.getElementById("name").value;
+    const Address = document.getElementById("address").value;
+    const Email = email;
+    const DOB = document.getElementById("dob").value;
+    const Phone = document.getElementById("phone").value;
+
+    fetch(addMemberApiUrl, {
+        method: "POST",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            memberName: Name,
+            memberAddress: Address,
+            memberEmail: Email,
+            memberDOB: DOB,
+            memberPhone: Phone
+        })
+    })
+    .then((response)=>{
+        console.log(response);
+        document.forms['AddMembers'].reset();
+    })
+}
+
+//UPDATES
+function updateTransaction(TID, Total, managerName, managerID, employeeName, employeeID){
+    const tranactionID = TID;
+    const updateTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions/" + tranactionID;
+    const TransactionCost = Total;
+    console.log(Total);
+    fetch(updateTransactionApiUrl, {
+        method: "PUT",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            transactionID: parseInt(tranactionID),
+            transactionCost: parseFloat(TransactionCost)
+        })
+    }).then((response)=>{
+        console.log(response);
+        getTransactionLineItem(TID);
+        var para = "?managerName=" + managerName + "&managerID=" + managerID + "&employeeName=" + employeeName + "&employeeID=" + employeeID;
+        var html = "<p class=\"text-center\">Thank you for shopping at Title Town Cards</p>" +
+                    "<div style=\"text-align:center\">"+    
+                        "<a href=\"UIStartPage.html" + para + "\" class=\"btn btn-secondary btn-lg\" role =\"button\">Exit</a>" +
+                    "</div>";
+        document.getElementById("thank you").innerHTML = html;
+
+    })
+}
+
+function updateEmpTransaction(TID, Total, managerName, managerID, employeeName, employeeID){
+    const tranactionID = TID;
+    const updateTransactionApiUrl = "https://title-town-cards-api.herokuapp.com/API/Transactions/" + tranactionID;
+    const TransactionCost = Total;
+    console.log(Total);
+    fetch(updateTransactionApiUrl, {
+        method: "PUT",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        },
+        body: JSON.stringify({
+            transactionID: parseInt(tranactionID),
+            transactionCost: parseFloat(TransactionCost)
+        })
+    }).then((response)=>{
+        console.log(response);
+        getTransactionLineItem(TID);
+        var para = "?managerName=" + managerName + "&managerID=" + managerID + "&employeeName=" + employeeName + "&employeeID=" + employeeID;
+        var html =  "<div style=\"text-align:center\">"+    
+                        "<a href=\"EmployeeStartPage.html" + para + "\" class=\"btn btn-secondary btn-lg\" role =\"button\">Exit</a>" +
+                    "</div>";
+        document.getElementById("thank you").innerHTML = html;
+
+    })
+}
+function getTransactionLineItem(TID){
+    const getTransactionLineItemApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems";
+
+    fetch(getTransactionLineItemApiUrl).then(function(response){
+        console.log(response);
+        return response.json();
+    }).then(function(json){
+        json.forEach((lineItem)=>{
+            console.log(TID);
+            console.log(lineItem.transactionID);
+            if(TID == lineItem.transactionID)
+            {
+                updateProductStatus(lineItem.productID)
+            }
+        })
+    })
+}
+
+function updateProductStatus(ID){
+    const updateProductStatusApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products/" + ID;
+    const statusUpdate = "Sold";
+    const productID = ID;
+    fetch(updateProductStatusApiUrl, {
+    method: "PUT",
+    headers: {
+        "Accept": 'application/json',
+        "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+        productID: parseInt(productID),
+        productStatus: statusUpdate
+    })
+    }).then((response)=>{
+        console.log(response);
+        
+    })
+}
+
+function editProductName(ID){
+    const updateProductStatusApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products/" + ID;
+    const productID = ID;
+    const Name = document.getElementById('name').value;
+
+    fetch(updateProductStatusApiUrl, {
+    method: "PUT",
+    headers: {
+        "Accept": 'application/json',
+        "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+        productID: parseInt(productID),
+        productName: Name
+    })
+    }).then((response)=>{
+        console.log(response);
+        
+    })
+}
+
+function editProductPrice(ID){
+    const updateProductStatusApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products/" + ID;
+    const productID = ID;
+    const Price = document.getElementById('price').value;
+
+    fetch(updateProductStatusApiUrl, {
+    method: "PUT",
+    headers: {
+        "Accept": 'application/json',
+        "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+        productID: parseInt(productID),
+        productPrice: parseFloat(Price)
+    })
+    }).then((response)=>{
+        console.log(response);
+        
+    })
+}
+
+function editProductDiscount(ID){
+    const updateProductStatusApiUrl = "https://title-town-cards-api.herokuapp.com/API/Products/" + ID;
+    const productID = ID;
+    const Discount = document.getElementById('discount').value;
+
+    fetch(updateProductStatusApiUrl, {
+    method: "PUT",
+    headers: {
+        "Accept": 'application/json',
+        "Content-Type": 'application/json'
+    },
+    body: JSON.stringify({
+        productID: parseInt(productID),
+        productDiscount: parseFloat(Discount)
+    })
+    }).then((response)=>{
+        console.log(response);
+        
+    })
+}
+//DELETES
+
+//Deletes TLI
+function deleteTLI(productID){
+    const deleteTLIApiUrl = "https://title-town-cards-api.herokuapp.com/API/TransactionLineItems/" + productID;
+
+    fetch(deleteTLIApiUrl, {
+        method: "DELETE",
+        headers: {
+            "Accept": 'application/json',
+            "Content-Type": 'application/json'
+        }
+    }).then((response)=>{
+        console.log(response);
+    })
+}
+
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+  
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
 }

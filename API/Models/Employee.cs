@@ -7,11 +7,10 @@ namespace API.Models
         public string employeePhone{get; set;}
         public string employeeEmail{get; set;}
         public string employeeAddress{get; set;}
-        public int managerID{get; set;}
 
         public override string ToString()
         {
-            return employeeID + "/" + employeeName + "/" + employeePhone + "/" + employeeEmail + "/" + employeeAddress + "/" + managerID;
+            return employeeID + "/" + employeeName + "/" + employeePhone + "/" + employeeEmail + "/" + employeeAddress;
         }
     }
 }

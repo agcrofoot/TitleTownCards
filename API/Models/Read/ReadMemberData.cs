@@ -12,35 +12,54 @@ namespace API.Models.Read
     {
         public List<Member> GetAllMembers()
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
+            DBConnect db = new DBConnect();
+            bool isOpen = db.OpenConnection();
 
-            string stm = "SELECT * FROM Member";
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-
-            using MySqlDataReader rdr = cmd.ExecuteReader();
-            List<Member> allMembers = new List<Member>();
-            while(rdr.Read())
+            if(isOpen)
             {
-                allMembers.Add(new Member(){memberID = rdr.GetInt32(0), memberFName = rdr.GetString(1), memberLName = rdr.GetString(2), memberAddress1 = rdr.GetString(3), memberAddress2 = rdr.GetString(4), memberCity = rdr.GetString(5), memberState = rdr.GetString(6), memberZip = rdr.GetInt32(7), memberCountry = rdr.GetString(8), memberEmail = rdr.GetString(9), memberDOB = rdr.GetString(10), memberPhone = rdr.GetString(11), memberCardNo = rdr.GetInt32(12)});
+                MySqlConnection conn = db.GetConn();
+                string stm = "SELECT * FROM Member";
+                MySqlCommand cmd = new MySqlCommand(stm,conn);
+
+                List<Member> allMembers = new List<Member>();
+                using(var rdr = cmd.ExecuteReader())
+                {
+                    while(rdr.Read())
+                    {
+                        allMembers.Add(new Member(){memberID = rdr.GetInt32(0), memberName = rdr.GetString(1), memberAddress = rdr.GetString(2), memberEmail = rdr.GetString(3), memberDOB = rdr.GetString(4), memberPhone = rdr.GetString(5)});
+                    
+                    }
+                    db.CloseConnection();
+                    return allMembers;
+                }
             }
-            return allMembers;
+            else
+            {
+                return new List<Member>();
+            }
         }
         public Member GetMember(int memberID)
         {
-            string cs = @"server=<localhost>;user=<root>;database=<ttowncards>;password=<>;";
-            MySqlConnection con = new MySqlConnection(cs);
-            con.Open();
+            DBConnect db = new DBConnect();
+            bool isOpen = db.OpenConnection();
 
-            string stm = "SELECT * FROM Member WHERE MemberID = @MemberID";
-            MySqlCommand cmd = new MySqlCommand(stm,con);
-            cmd.Parameters.AddWithValue("@MemberID", memberID);
-            cmd.Prepare();
-            using MySqlDataReader rdr = cmd.ExecuteReader();
-            
-            rdr.Read();
-            return new Member(){memberID = rdr.GetInt32(0), memberFName = rdr.GetString(1), memberLName = rdr.GetString(2), memberAddress1 = rdr.GetString(3), memberAddress2 = rdr.GetString(4), memberCity = rdr.GetString(5), memberState = rdr.GetString(6), memberZip = rdr.GetInt32(7), memberCountry = rdr.GetString(8), memberEmail = rdr.GetString(9), memberDOB = rdr.GetString(10), memberPhone = rdr.GetString(11), memberCardNo = rdr.GetInt32(12)};
+            if(isOpen)
+            {
+                MySqlConnection conn = db.GetConn();
+                string stm = "SELECT * FROM Member WHERE MemberID = @MemberID";
+                MySqlCommand cmd = new MySqlCommand(stm,conn);
+                cmd.Parameters.AddWithValue("@MemberID", memberID);
+                cmd.Prepare();
+                using var rdr = cmd.ExecuteReader();
+                rdr.Read();
+                Member member = new Member(){memberID = rdr.GetInt32(0), memberName = rdr.GetString(1), memberAddress = rdr.GetString(2), memberEmail = rdr.GetString(3), memberDOB = rdr.GetString(4), memberPhone = rdr.GetString(5)};
+                db.CloseConnection();
+                return member;
+            }
+            else
+            {
+                return new Member();
+            }
         }
     }
 }
